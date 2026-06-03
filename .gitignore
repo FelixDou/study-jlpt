@@ -1,0 +1,8 @@
+progress.json
+__pycache__/
+.DS_Store
+.playwright-cli/
+output/
+data/example_chunks/
+data/example_tasks/
+*.log

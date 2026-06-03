@@ -1,0 +1,3126 @@
+[
+  {
+    "id": "kanji:n4:会",
+    "deckId": "n4",
+    "word": "会",
+    "reading": "エ / カイ / あ.う / あ.わせる / あつ.まる",
+    "meaning": "association; interview; join; meet; meeting; party",
+    "kind": "kanji",
+    "onReadings": [
+      "エ",
+      "カイ"
+    ],
+    "kunReadings": [
+      "あ.う",
+      "あ.わせる",
+      "あつ.まる"
+    ],
+    "strokes": 6,
+    "frequency": 4,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:同",
+    "deckId": "n4",
+    "word": "同",
+    "reading": "ドウ / おな.じ",
+    "meaning": "agree; equal; same",
+    "kind": "kanji",
+    "onReadings": [
+      "ドウ"
+    ],
+    "kunReadings": [
+      "おな.じ"
+    ],
+    "strokes": 6,
+    "frequency": 15,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:事",
+    "deckId": "n4",
+    "word": "事",
+    "reading": "ジ / ズ / こと / つか.う / つか.える",
+    "meaning": "business; fact; matter; possibly; reason; thing",
+    "kind": "kanji",
+    "onReadings": [
+      "ジ",
+      "ズ"
+    ],
+    "kunReadings": [
+      "こと",
+      "つか.う",
+      "つか.える"
+    ],
+    "strokes": 8,
+    "frequency": 18,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:自",
+    "deckId": "n4",
+    "word": "自",
+    "reading": "シ / ジ / おの.ずから / おの.ずと / みずか.ら",
+    "meaning": "oneself",
+    "kind": "kanji",
+    "onReadings": [
+      "シ",
+      "ジ"
+    ],
+    "kunReadings": [
+      "おの.ずから",
+      "おの.ずと",
+      "みずか.ら"
+    ],
+    "strokes": 6,
+    "frequency": 19,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:社",
+    "deckId": "n4",
+    "word": "社",
+    "reading": "シャ / やしろ",
+    "meaning": "association; company; firm; office; shrine",
+    "kind": "kanji",
+    "onReadings": [
+      "シャ"
+    ],
+    "kunReadings": [
+      "やしろ"
+    ],
+    "strokes": 7,
+    "frequency": 21,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:発",
+    "deckId": "n4",
+    "word": "発",
+    "reading": "ハツ / ホツ / あば.く / おこ.る / た.つ / つか.わす / はな.つ",
+    "meaning": "counter for gunshots; departure; discharge; disclose; emit; publish; start from",
+    "kind": "kanji",
+    "onReadings": [
+      "ハツ",
+      "ホツ"
+    ],
+    "kunReadings": [
+      "あば.く",
+      "おこ.る",
+      "た.つ",
+      "つか.わす",
+      "はな.つ"
+    ],
+    "strokes": 9,
+    "frequency": 32,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:者",
+    "deckId": "n4",
+    "word": "者",
+    "reading": "シャ / もの",
+    "meaning": "person; someone",
+    "kind": "kanji",
+    "onReadings": [
+      "シャ"
+    ],
+    "kunReadings": [
+      "もの"
+    ],
+    "strokes": 8,
+    "frequency": 38,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:地",
+    "deckId": "n4",
+    "word": "地",
+    "reading": "ジ / チ",
+    "meaning": "earth; ground",
+    "kind": "kanji",
+    "onReadings": [
+      "ジ",
+      "チ"
+    ],
+    "kunReadings": [],
+    "strokes": 6,
+    "frequency": 40,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:業",
+    "deckId": "n4",
+    "word": "業",
+    "reading": "ギョウ / ゴウ / わざ",
+    "meaning": "arts; business; performance; vocation",
+    "kind": "kanji",
+    "onReadings": [
+      "ギョウ",
+      "ゴウ"
+    ],
+    "kunReadings": [
+      "わざ"
+    ],
+    "strokes": 13,
+    "frequency": 43,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:方",
+    "deckId": "n4",
+    "word": "方",
+    "reading": "ホウ / -かた / -がた / かた",
+    "meaning": "alternative; direction; person",
+    "kind": "kanji",
+    "onReadings": [
+      "ホウ"
+    ],
+    "kunReadings": [
+      "-かた",
+      "-がた",
+      "かた"
+    ],
+    "strokes": 4,
+    "frequency": 46,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:新",
+    "deckId": "n4",
+    "word": "新",
+    "reading": "シン / あたら.しい / あら- / あら.た / にい-",
+    "meaning": "new",
+    "kind": "kanji",
+    "onReadings": [
+      "シン"
+    ],
+    "kunReadings": [
+      "あたら.しい",
+      "あら-",
+      "あら.た",
+      "にい-"
+    ],
+    "strokes": 13,
+    "frequency": 51,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:場",
+    "deckId": "n4",
+    "word": "場",
+    "reading": "ジョウ / チョウ / ば",
+    "meaning": "location; place",
+    "kind": "kanji",
+    "onReadings": [
+      "ジョウ",
+      "チョウ"
+    ],
+    "kunReadings": [
+      "ば"
+    ],
+    "strokes": 12,
+    "frequency": 52,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:員",
+    "deckId": "n4",
+    "word": "員",
+    "reading": "イン",
+    "meaning": "employee; member; number; the one in charge",
+    "kind": "kanji",
+    "onReadings": [
+      "イン"
+    ],
+    "kunReadings": [],
+    "strokes": 10,
+    "frequency": 54,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:立",
+    "deckId": "n4",
+    "word": "立",
+    "reading": "リットル / リツ / リュウ / -た.つ / -た.て / -た.てる / -だ.て / -だ.てる / た.ち- / た.つ / た.て- / た.てる / たて-",
+    "meaning": "erect; rise; set up; stand up",
+    "kind": "kanji",
+    "onReadings": [
+      "リットル",
+      "リツ",
+      "リュウ"
+    ],
+    "kunReadings": [
+      "-た.つ",
+      "-た.て",
+      "-た.てる",
+      "-だ.て",
+      "-だ.てる",
+      "た.ち-",
+      "た.つ",
+      "た.て-",
+      "た.てる",
+      "たて-"
+    ],
+    "strokes": 5,
+    "frequency": 58,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:開",
+    "deckId": "n4",
+    "word": "開",
+    "reading": "カイ / -びら.き / あ.く / あ.ける / ひら.き / ひら.く / ひら.ける",
+    "meaning": "open; unfold; unseal",
+    "kind": "kanji",
+    "onReadings": [
+      "カイ"
+    ],
+    "kunReadings": [
+      "-びら.き",
+      "あ.く",
+      "あ.ける",
+      "ひら.き",
+      "ひら.く",
+      "ひら.ける"
+    ],
+    "strokes": 12,
+    "frequency": 59,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:手",
+    "deckId": "n4",
+    "word": "手",
+    "reading": "シュ / ズ / -て / た- / て / て-",
+    "meaning": "hand",
+    "kind": "kanji",
+    "onReadings": [
+      "シュ",
+      "ズ"
+    ],
+    "kunReadings": [
+      "-て",
+      "た-",
+      "て",
+      "て-"
+    ],
+    "strokes": 4,
+    "frequency": 60,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:力",
+    "deckId": "n4",
+    "word": "力",
+    "reading": "リイ / リキ / リョク / ちから",
+    "meaning": "bear up; exert; power; strain; strength; strong",
+    "kind": "kanji",
+    "onReadings": [
+      "リイ",
+      "リキ",
+      "リョク"
+    ],
+    "kunReadings": [
+      "ちから"
+    ],
+    "strokes": 2,
+    "frequency": 62,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:問",
+    "deckId": "n4",
+    "word": "問",
+    "reading": "モン / と.い / と.う / とん",
+    "meaning": "ask; problem; question",
+    "kind": "kanji",
+    "onReadings": [
+      "モン"
+    ],
+    "kunReadings": [
+      "と.い",
+      "と.う",
+      "とん"
+    ],
+    "strokes": 11,
+    "frequency": 64,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:代",
+    "deckId": "n4",
+    "word": "代",
+    "reading": "タイ / ダイ / -が.わり / -がわ.り / か.える / か.わり / か.わる / かわ.り / かわ.る / しろ / よ",
+    "meaning": "age; change; charge; convert; counter for decades of ages, eras, etc.; fee; generation; period; rate; replace; substitute",
+    "kind": "kanji",
+    "onReadings": [
+      "タイ",
+      "ダイ"
+    ],
+    "kunReadings": [
+      "-が.わり",
+      "-がわ.り",
+      "か.える",
+      "か.わり",
+      "か.わる",
+      "かわ.り",
+      "かわ.る",
+      "しろ",
+      "よ"
+    ],
+    "strokes": 5,
+    "frequency": 66,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:明",
+    "deckId": "n4",
+    "word": "明",
+    "reading": "ミョウ / ミン / メイ / -あ.け / あ.かす / あ.かり / あ.く / あ.くる / あ.ける / あか.らむ / あか.るい / あか.るむ / あき.らか",
+    "meaning": "bright; light",
+    "kind": "kanji",
+    "onReadings": [
+      "ミョウ",
+      "ミン",
+      "メイ"
+    ],
+    "kunReadings": [
+      "-あ.け",
+      "あ.かす",
+      "あ.かり",
+      "あ.く",
+      "あ.くる",
+      "あ.ける",
+      "あか.らむ",
+      "あか.るい",
+      "あか.るむ",
+      "あき.らか"
+    ],
+    "strokes": 8,
+    "frequency": 67,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:動",
+    "deckId": "n4",
+    "word": "動",
+    "reading": "ドウ / うご.かす / うご.く",
+    "meaning": "change; confusion; motion; move; shake; shift",
+    "kind": "kanji",
+    "onReadings": [
+      "ドウ"
+    ],
+    "kunReadings": [
+      "うご.かす",
+      "うご.く"
+    ],
+    "strokes": 11,
+    "frequency": 73,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:京",
+    "deckId": "n4",
+    "word": "京",
+    "reading": "キョウ / キン / ケイ / みやこ",
+    "meaning": "10**16; capital",
+    "kind": "kanji",
+    "onReadings": [
+      "キョウ",
+      "キン",
+      "ケイ"
+    ],
+    "kunReadings": [
+      "みやこ"
+    ],
+    "strokes": 8,
+    "frequency": 74,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:目",
+    "deckId": "n4",
+    "word": "目",
+    "reading": "ボク / モク / -め / ま- / め",
+    "meaning": "care; class; experience; eye; favor; insight; look",
+    "kind": "kanji",
+    "onReadings": [
+      "ボク",
+      "モク"
+    ],
+    "kunReadings": [
+      "-め",
+      "ま-",
+      "め"
+    ],
+    "strokes": 5,
+    "frequency": 76,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:通",
+    "deckId": "n4",
+    "word": "通",
+    "reading": "ツ / ツウ / -とお.り / -どお.し / -どお.り / かよ.う / とお.し / とお.す / とお.り / とお.る",
+    "meaning": "avenue; commute; counter for letters, notes, documents, etc.; pass through; traffic",
+    "kind": "kanji",
+    "onReadings": [
+      "ツ",
+      "ツウ"
+    ],
+    "kunReadings": [
+      "-とお.り",
+      "-どお.し",
+      "-どお.り",
+      "かよ.う",
+      "とお.し",
+      "とお.す",
+      "とお.り",
+      "とお.る"
+    ],
+    "strokes": 10,
+    "frequency": 80,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:言",
+    "deckId": "n4",
+    "word": "言",
+    "reading": "ゲン / ゴン / い.う / こと",
+    "meaning": "say; word",
+    "kind": "kanji",
+    "onReadings": [
+      "ゲン",
+      "ゴン"
+    ],
+    "kunReadings": [
+      "い.う",
+      "こと"
+    ],
+    "strokes": 7,
+    "frequency": 83,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:理",
+    "deckId": "n4",
+    "word": "理",
+    "reading": "リ / ことわり",
+    "meaning": "arrangement; justice; logic; reason; truth",
+    "kind": "kanji",
+    "onReadings": [
+      "リ"
+    ],
+    "kunReadings": [
+      "ことわり"
+    ],
+    "strokes": 11,
+    "frequency": 86,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:体",
+    "deckId": "n4",
+    "word": "体",
+    "reading": "タイ / テイ / かたち / からだ",
+    "meaning": "body; counter for images; object; reality; substance",
+    "kind": "kanji",
+    "onReadings": [
+      "タイ",
+      "テイ"
+    ],
+    "kunReadings": [
+      "かたち",
+      "からだ"
+    ],
+    "strokes": 7,
+    "frequency": 88,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:田",
+    "deckId": "n4",
+    "word": "田",
+    "reading": "デン / た",
+    "meaning": "rice field; rice paddy",
+    "kind": "kanji",
+    "onReadings": [
+      "デン"
+    ],
+    "kunReadings": [
+      "た"
+    ],
+    "strokes": 5,
+    "frequency": 90,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:主",
+    "deckId": "n4",
+    "word": "主",
+    "reading": "シュ / シュウ / ス / あるじ / おも / ぬし",
+    "meaning": "chief; lord; main thing; master; principal",
+    "kind": "kanji",
+    "onReadings": [
+      "シュ",
+      "シュウ",
+      "ス"
+    ],
+    "kunReadings": [
+      "あるじ",
+      "おも",
+      "ぬし"
+    ],
+    "strokes": 5,
+    "frequency": 95,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:題",
+    "deckId": "n4",
+    "word": "題",
+    "reading": "ダイ",
+    "meaning": "subject; topic",
+    "kind": "kanji",
+    "onReadings": [
+      "ダイ"
+    ],
+    "kunReadings": [],
+    "strokes": 18,
+    "frequency": 96,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:意",
+    "deckId": "n4",
+    "word": "意",
+    "reading": "イ",
+    "meaning": "care; desire; heart; idea; liking; mind; taste; thought",
+    "kind": "kanji",
+    "onReadings": [
+      "イ"
+    ],
+    "kunReadings": [],
+    "strokes": 13,
+    "frequency": 99,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:不",
+    "deckId": "n4",
+    "word": "不",
+    "reading": "フ / ブ",
+    "meaning": "bad; clumsy; negative; non-; ugly",
+    "kind": "kanji",
+    "onReadings": [
+      "フ",
+      "ブ"
+    ],
+    "kunReadings": [],
+    "strokes": 4,
+    "frequency": 101,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:作",
+    "deckId": "n4",
+    "word": "作",
+    "reading": "サ / サク / -づく.り / つく.り / つく.る",
+    "meaning": "build; make; prepare; production",
+    "kind": "kanji",
+    "onReadings": [
+      "サ",
+      "サク"
+    ],
+    "kunReadings": [
+      "-づく.り",
+      "つく.り",
+      "つく.る"
+    ],
+    "strokes": 7,
+    "frequency": 103,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:用",
+    "deckId": "n4",
+    "word": "用",
+    "reading": "ヨウ / もち.いる",
+    "meaning": "business; employ; service; use; utilize",
+    "kind": "kanji",
+    "onReadings": [
+      "ヨウ"
+    ],
+    "kunReadings": [
+      "もち.いる"
+    ],
+    "strokes": 5,
+    "frequency": 107,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:度",
+    "deckId": "n4",
+    "word": "度",
+    "reading": "タク / ト / ド / -た.い / たび",
+    "meaning": "attitude; consider; counter for occurrences; degrees; occurrence; time",
+    "kind": "kanji",
+    "onReadings": [
+      "タク",
+      "ト",
+      "ド"
+    ],
+    "kunReadings": [
+      "-た.い",
+      "たび"
+    ],
+    "strokes": 9,
+    "frequency": 110,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:強",
+    "deckId": "n4",
+    "word": "強",
+    "reading": "キョウ / ゴウ / こわ.い / し.いる / つよ.い / つよ.まる / つよ.める",
+    "meaning": "strong",
+    "kind": "kanji",
+    "onReadings": [
+      "キョウ",
+      "ゴウ"
+    ],
+    "kunReadings": [
+      "こわ.い",
+      "し.いる",
+      "つよ.い",
+      "つよ.まる",
+      "つよ.める"
+    ],
+    "strokes": 11,
+    "frequency": 112,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:公",
+    "deckId": "n4",
+    "word": "公",
+    "reading": "ク / コウ / おおやけ",
+    "meaning": "governmental; official; prince; public",
+    "kind": "kanji",
+    "onReadings": [
+      "ク",
+      "コウ"
+    ],
+    "kunReadings": [
+      "おおやけ"
+    ],
+    "strokes": 4,
+    "frequency": 118,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:持",
+    "deckId": "n4",
+    "word": "持",
+    "reading": "ジ / -も.ち / も.つ / も.てる",
+    "meaning": "have; hold",
+    "kind": "kanji",
+    "onReadings": [
+      "ジ"
+    ],
+    "kunReadings": [
+      "-も.ち",
+      "も.つ",
+      "も.てる"
+    ],
+    "strokes": 9,
+    "frequency": 119,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:野",
+    "deckId": "n4",
+    "word": "野",
+    "reading": "ショ / ヤ / の / の-",
+    "meaning": "civilian life; field; plains; rustic",
+    "kind": "kanji",
+    "onReadings": [
+      "ショ",
+      "ヤ"
+    ],
+    "kunReadings": [
+      "の",
+      "の-"
+    ],
+    "strokes": 11,
+    "frequency": 120,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:以",
+    "deckId": "n4",
+    "word": "以",
+    "reading": "イ / もっ.て",
+    "meaning": "because; by means of; compared with; in view of",
+    "kind": "kanji",
+    "onReadings": [
+      "イ"
+    ],
+    "kunReadings": [
+      "もっ.て"
+    ],
+    "strokes": 5,
+    "frequency": 126,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:思",
+    "deckId": "n4",
+    "word": "思",
+    "reading": "シ / おぼ.す / おも.う / おもえら.く",
+    "meaning": "think",
+    "kind": "kanji",
+    "onReadings": [
+      "シ"
+    ],
+    "kunReadings": [
+      "おぼ.す",
+      "おも.う",
+      "おもえら.く"
+    ],
+    "strokes": 9,
+    "frequency": 132,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:家",
+    "deckId": "n4",
+    "word": "家",
+    "reading": "カ / ケ / いえ / うち / や",
+    "meaning": "expert; family; home; house; performer; professional",
+    "kind": "kanji",
+    "onReadings": [
+      "カ",
+      "ケ"
+    ],
+    "kunReadings": [
+      "いえ",
+      "うち",
+      "や"
+    ],
+    "strokes": 10,
+    "frequency": 133,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:世",
+    "deckId": "n4",
+    "word": "世",
+    "reading": "セ / セイ / ソウ / よ",
+    "meaning": "generation; public; society; world",
+    "kind": "kanji",
+    "onReadings": [
+      "セ",
+      "セイ",
+      "ソウ"
+    ],
+    "kunReadings": [
+      "よ"
+    ],
+    "strokes": 5,
+    "frequency": 135,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:多",
+    "deckId": "n4",
+    "word": "多",
+    "reading": "タ / おお.い / まさ.に / まさ.る",
+    "meaning": "frequent; many; much",
+    "kind": "kanji",
+    "onReadings": [
+      "タ"
+    ],
+    "kunReadings": [
+      "おお.い",
+      "まさ.に",
+      "まさ.る"
+    ],
+    "strokes": 6,
+    "frequency": 139,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:正",
+    "deckId": "n4",
+    "word": "正",
+    "reading": "ショウ / セイ / ただ.しい / ただ.す / まさ / まさ.に",
+    "meaning": "10**40; correct; justice; righteous",
+    "kind": "kanji",
+    "onReadings": [
+      "ショウ",
+      "セイ"
+    ],
+    "kunReadings": [
+      "ただ.しい",
+      "ただ.す",
+      "まさ",
+      "まさ.に"
+    ],
+    "strokes": 5,
+    "frequency": 143,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:安",
+    "deckId": "n4",
+    "word": "安",
+    "reading": "アン / やす / やす.い / やす.まる / やす.らか",
+    "meaning": "cheap; contented; low; peaceful; quiet; relax; rested",
+    "kind": "kanji",
+    "onReadings": [
+      "アン"
+    ],
+    "kunReadings": [
+      "やす",
+      "やす.い",
+      "やす.まる",
+      "やす.らか"
+    ],
+    "strokes": 6,
+    "frequency": 144,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:院",
+    "deckId": "n4",
+    "word": "院",
+    "reading": "イン",
+    "meaning": "Inst.; institution; mansion; school; temple",
+    "kind": "kanji",
+    "onReadings": [
+      "イン"
+    ],
+    "kunReadings": [],
+    "strokes": 10,
+    "frequency": 150,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:心",
+    "deckId": "n4",
+    "word": "心",
+    "reading": "シン / -ごころ / こころ",
+    "meaning": "heart; heart radical (no. 61); mind; spirit",
+    "kind": "kanji",
+    "onReadings": [
+      "シン"
+    ],
+    "kunReadings": [
+      "-ごころ",
+      "こころ"
+    ],
+    "strokes": 4,
+    "frequency": 157,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:界",
+    "deckId": "n4",
+    "word": "界",
+    "reading": "カイ",
+    "meaning": "boundary; world",
+    "kind": "kanji",
+    "onReadings": [
+      "カイ"
+    ],
+    "kunReadings": [],
+    "strokes": 9,
+    "frequency": 158,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:教",
+    "deckId": "n4",
+    "word": "教",
+    "reading": "キョウ / おし.える / おそ.わる",
+    "meaning": "doctrine; faith; teach",
+    "kind": "kanji",
+    "onReadings": [
+      "キョウ"
+    ],
+    "kunReadings": [
+      "おし.える",
+      "おそ.わる"
+    ],
+    "strokes": 11,
+    "frequency": 166,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:文",
+    "deckId": "n4",
+    "word": "文",
+    "reading": "ブン / モン / あや / ふみ",
+    "meaning": "art; decoration; figures; literary radical (no. 67); literature; plan; sentence; style",
+    "kind": "kanji",
+    "onReadings": [
+      "ブン",
+      "モン"
+    ],
+    "kunReadings": [
+      "あや",
+      "ふみ"
+    ],
+    "strokes": 4,
+    "frequency": 190,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:元",
+    "deckId": "n4",
+    "word": "元",
+    "reading": "ガン / ゲン / もと",
+    "meaning": "beginning; former time; origin",
+    "kind": "kanji",
+    "onReadings": [
+      "ガン",
+      "ゲン"
+    ],
+    "kunReadings": [
+      "もと"
+    ],
+    "strokes": 4,
+    "frequency": 192,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:重",
+    "deckId": "n4",
+    "word": "重",
+    "reading": "ジュウ / チョウ / え / おも / おも.い / おも.なう / おも.り / かさ.なる / かさ.ねる",
+    "meaning": "-fold; esteem; heap up; heavy; important; nest of boxes; pile up; respect",
+    "kind": "kanji",
+    "onReadings": [
+      "ジュウ",
+      "チョウ"
+    ],
+    "kunReadings": [
+      "え",
+      "おも",
+      "おも.い",
+      "おも.なう",
+      "おも.り",
+      "かさ.なる",
+      "かさ.ねる"
+    ],
+    "strokes": 9,
+    "frequency": 193,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:近",
+    "deckId": "n4",
+    "word": "近",
+    "reading": "キン / コン / ちか.い",
+    "meaning": "akin; early; near; tantamount",
+    "kind": "kanji",
+    "onReadings": [
+      "キン",
+      "コン"
+    ],
+    "kunReadings": [
+      "ちか.い"
+    ],
+    "strokes": 7,
+    "frequency": 194,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:考",
+    "deckId": "n4",
+    "word": "考",
+    "reading": "コウ / かんが.え / かんが.える",
+    "meaning": "consider; think over",
+    "kind": "kanji",
+    "onReadings": [
+      "コウ"
+    ],
+    "kunReadings": [
+      "かんが.え",
+      "かんが.える"
+    ],
+    "strokes": 6,
+    "frequency": 196,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:画",
+    "deckId": "n4",
+    "word": "画",
+    "reading": "エ / カイ / カク / ガ / えが.く / かぎ.る / かく.する / はか.る / はかりごと",
+    "meaning": "brush-stroke; picture",
+    "kind": "kanji",
+    "onReadings": [
+      "エ",
+      "カイ",
+      "カク",
+      "ガ"
+    ],
+    "kunReadings": [
+      "えが.く",
+      "かぎ.る",
+      "かく.する",
+      "はか.る",
+      "はかりごと"
+    ],
+    "strokes": 8,
+    "frequency": 199,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:海",
+    "deckId": "n4",
+    "word": "海",
+    "reading": "カイ / うみ",
+    "meaning": "ocean; sea",
+    "kind": "kanji",
+    "onReadings": [
+      "カイ"
+    ],
+    "kunReadings": [
+      "うみ"
+    ],
+    "strokes": 9,
+    "frequency": 200,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:売",
+    "deckId": "n4",
+    "word": "売",
+    "reading": "バイ / う.る / う.れる",
+    "meaning": "sell",
+    "kind": "kanji",
+    "onReadings": [
+      "バイ"
+    ],
+    "kunReadings": [
+      "う.る",
+      "う.れる"
+    ],
+    "strokes": 7,
+    "frequency": 202,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:知",
+    "deckId": "n4",
+    "word": "知",
+    "reading": "チ / し.らせる / し.る",
+    "meaning": "know; wisdom",
+    "kind": "kanji",
+    "onReadings": [
+      "チ"
+    ],
+    "kunReadings": [
+      "し.らせる",
+      "し.る"
+    ],
+    "strokes": 8,
+    "frequency": 205,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:道",
+    "deckId": "n4",
+    "word": "道",
+    "reading": "トウ / ドウ / いう / みち",
+    "meaning": "course; district; journey; moral; road-way; street; teachings",
+    "kind": "kanji",
+    "onReadings": [
+      "トウ",
+      "ドウ"
+    ],
+    "kunReadings": [
+      "いう",
+      "みち"
+    ],
+    "strokes": 12,
+    "frequency": 207,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:集",
+    "deckId": "n4",
+    "word": "集",
+    "reading": "シュウ / あつ.まる / あつ.める / つど.う",
+    "meaning": "congregate; flock; gather; meet; swarm",
+    "kind": "kanji",
+    "onReadings": [
+      "シュウ"
+    ],
+    "kunReadings": [
+      "あつ.まる",
+      "あつ.める",
+      "つど.う"
+    ],
+    "strokes": 12,
+    "frequency": 210,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:別",
+    "deckId": "n4",
+    "word": "別",
+    "reading": "ベツ / わ.ける / わか.れる",
+    "meaning": "another; branch off; diverge; extra; fork; separate; specially",
+    "kind": "kanji",
+    "onReadings": [
+      "ベツ"
+    ],
+    "kunReadings": [
+      "わ.ける",
+      "わか.れる"
+    ],
+    "strokes": 7,
+    "frequency": 214,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:物",
+    "deckId": "n4",
+    "word": "物",
+    "reading": "ブツ / モツ / もの / もの-",
+    "meaning": "matter; object; thing",
+    "kind": "kanji",
+    "onReadings": [
+      "ブツ",
+      "モツ"
+    ],
+    "kunReadings": [
+      "もの",
+      "もの-"
+    ],
+    "strokes": 8,
+    "frequency": 215,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:使",
+    "deckId": "n4",
+    "word": "使",
+    "reading": "シ / -つか.い / -づか.い / つか.い / つか.う",
+    "meaning": "ambassador; cause; envoy; messenger; order; send on a mission; use",
+    "kind": "kanji",
+    "onReadings": [
+      "シ"
+    ],
+    "kunReadings": [
+      "-つか.い",
+      "-づか.い",
+      "つか.い",
+      "つか.う"
+    ],
+    "strokes": 8,
+    "frequency": 219,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:品",
+    "deckId": "n4",
+    "word": "品",
+    "reading": "ヒン / ホン / しな",
+    "meaning": "article; counter for meal courses; dignity; goods; refinement",
+    "kind": "kanji",
+    "onReadings": [
+      "ヒン",
+      "ホン"
+    ],
+    "kunReadings": [
+      "しな"
+    ],
+    "strokes": 9,
+    "frequency": 225,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:計",
+    "deckId": "n4",
+    "word": "計",
+    "reading": "ケイ / はか.らう / はか.る",
+    "meaning": "measure; plan; plot; scheme",
+    "kind": "kanji",
+    "onReadings": [
+      "ケイ"
+    ],
+    "kunReadings": [
+      "はか.らう",
+      "はか.る"
+    ],
+    "strokes": 9,
+    "frequency": 228,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:死",
+    "deckId": "n4",
+    "word": "死",
+    "reading": "シ / し.に- / し.ぬ",
+    "meaning": "death; die",
+    "kind": "kanji",
+    "onReadings": [
+      "シ"
+    ],
+    "kunReadings": [
+      "し.に-",
+      "し.ぬ"
+    ],
+    "strokes": 6,
+    "frequency": 229,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:特",
+    "deckId": "n4",
+    "word": "特",
+    "reading": "トク",
+    "meaning": "special",
+    "kind": "kanji",
+    "onReadings": [
+      "トク"
+    ],
+    "kunReadings": [],
+    "strokes": 10,
+    "frequency": 234,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:私",
+    "deckId": "n4",
+    "word": "私",
+    "reading": "シ / わたくし / わたし",
+    "meaning": "I; me; private",
+    "kind": "kanji",
+    "onReadings": [
+      "シ"
+    ],
+    "kunReadings": [
+      "わたくし",
+      "わたし"
+    ],
+    "strokes": 7,
+    "frequency": 242,
+    "grade": 6
+  },
+  {
+    "id": "kanji:n4:始",
+    "deckId": "n4",
+    "word": "始",
+    "reading": "シ / -はじ.める / はじ.まる / はじ.める",
+    "meaning": "begin; commence",
+    "kind": "kanji",
+    "onReadings": [
+      "シ"
+    ],
+    "kunReadings": [
+      "-はじ.める",
+      "はじ.まる",
+      "はじ.める"
+    ],
+    "strokes": 8,
+    "frequency": 244,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:朝",
+    "deckId": "n4",
+    "word": "朝",
+    "reading": "チョウ / あさ",
+    "meaning": "(North) Korea; dynasty; epoch; morning; period; regime",
+    "kind": "kanji",
+    "onReadings": [
+      "チョウ"
+    ],
+    "kunReadings": [
+      "あさ"
+    ],
+    "strokes": 12,
+    "frequency": 248,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:運",
+    "deckId": "n4",
+    "word": "運",
+    "reading": "ウン / はこ.ぶ",
+    "meaning": "advance; carry; destiny; fate; lot; luck; progress; transport",
+    "kind": "kanji",
+    "onReadings": [
+      "ウン"
+    ],
+    "kunReadings": [
+      "はこ.ぶ"
+    ],
+    "strokes": 12,
+    "frequency": 255,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:終",
+    "deckId": "n4",
+    "word": "終",
+    "reading": "シュウ / -お.わる / お.える / お.わる / おわ.る / つい / つい.に",
+    "meaning": "end; finish",
+    "kind": "kanji",
+    "onReadings": [
+      "シュウ"
+    ],
+    "kunReadings": [
+      "-お.わる",
+      "お.える",
+      "お.わる",
+      "おわ.る",
+      "つい",
+      "つい.に"
+    ],
+    "strokes": 11,
+    "frequency": 256,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:台",
+    "deckId": "n4",
+    "word": "台",
+    "reading": "タイ / ダイ / うてな / つかさ / われ",
+    "meaning": "a stand; counter for machines and vehicles; pedestal",
+    "kind": "kanji",
+    "onReadings": [
+      "タイ",
+      "ダイ"
+    ],
+    "kunReadings": [
+      "うてな",
+      "つかさ",
+      "われ"
+    ],
+    "strokes": 5,
+    "frequency": 262,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:広",
+    "deckId": "n4",
+    "word": "広",
+    "reading": "コウ / ひろ.い / ひろ.がる / ひろ.げる / ひろ.まる / ひろ.める",
+    "meaning": "broad; spacious; wide",
+    "kind": "kanji",
+    "onReadings": [
+      "コウ"
+    ],
+    "kunReadings": [
+      "ひろ.い",
+      "ひろ.がる",
+      "ひろ.げる",
+      "ひろ.まる",
+      "ひろ.める"
+    ],
+    "strokes": 5,
+    "frequency": 263,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:住",
+    "deckId": "n4",
+    "word": "住",
+    "reading": "ジュウ / チュウ / ヂュウ / -ず.まい / す.まう / す.む",
+    "meaning": "dwell; inhabit; live; reside",
+    "kind": "kanji",
+    "onReadings": [
+      "ジュウ",
+      "チュウ",
+      "ヂュウ"
+    ],
+    "kunReadings": [
+      "-ず.まい",
+      "す.まう",
+      "す.む"
+    ],
+    "strokes": 7,
+    "frequency": 270,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:真",
+    "deckId": "n4",
+    "word": "真",
+    "reading": "シン / ま / ま- / まこと",
+    "meaning": "Buddhist sect; reality; true",
+    "kind": "kanji",
+    "onReadings": [
+      "シン"
+    ],
+    "kunReadings": [
+      "ま",
+      "ま-",
+      "まこと"
+    ],
+    "strokes": 10,
+    "frequency": 279,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:有",
+    "deckId": "n4",
+    "word": "有",
+    "reading": "ウ / ユウ / あ.る",
+    "meaning": "approx; exist; happen; have; occur; possess",
+    "kind": "kanji",
+    "onReadings": [
+      "ウ",
+      "ユウ"
+    ],
+    "kunReadings": [
+      "あ.る"
+    ],
+    "strokes": 6,
+    "frequency": 282,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:口",
+    "deckId": "n4",
+    "word": "口",
+    "reading": "ク / コウ / くち",
+    "meaning": "mouth",
+    "kind": "kanji",
+    "onReadings": [
+      "ク",
+      "コウ"
+    ],
+    "kunReadings": [
+      "くち"
+    ],
+    "strokes": 3,
+    "frequency": 284,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:少",
+    "deckId": "n4",
+    "word": "少",
+    "reading": "ショウ / すく.ない / すこ.し",
+    "meaning": "few; little",
+    "kind": "kanji",
+    "onReadings": [
+      "ショウ"
+    ],
+    "kunReadings": [
+      "すく.ない",
+      "すこ.し"
+    ],
+    "strokes": 4,
+    "frequency": 287,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:町",
+    "deckId": "n4",
+    "word": "町",
+    "reading": "チョウ / まち",
+    "meaning": "block; street; town; village",
+    "kind": "kanji",
+    "onReadings": [
+      "チョウ"
+    ],
+    "kunReadings": [
+      "まち"
+    ],
+    "strokes": 7,
+    "frequency": 292,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:料",
+    "deckId": "n4",
+    "word": "料",
+    "reading": "リョウ",
+    "meaning": "fee; materials",
+    "kind": "kanji",
+    "onReadings": [
+      "リョウ"
+    ],
+    "kunReadings": [],
+    "strokes": 10,
+    "frequency": 295,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:工",
+    "deckId": "n4",
+    "word": "工",
+    "reading": "ク / グ / コウ",
+    "meaning": "construction; craft; katakana e radical (no. 48)",
+    "kind": "kanji",
+    "onReadings": [
+      "ク",
+      "グ",
+      "コウ"
+    ],
+    "kunReadings": [],
+    "strokes": 3,
+    "frequency": 299,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:建",
+    "deckId": "n4",
+    "word": "建",
+    "reading": "ケン / コン / -だ.て / た.つ / た.て / た.てる",
+    "meaning": "build",
+    "kind": "kanji",
+    "onReadings": [
+      "ケン",
+      "コン"
+    ],
+    "kunReadings": [
+      "-だ.て",
+      "た.つ",
+      "た.て",
+      "た.てる"
+    ],
+    "strokes": 9,
+    "frequency": 300,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:空",
+    "deckId": "n4",
+    "word": "空",
+    "reading": "クウ / あ.き / あ.く / あ.ける / から / す.かす / す.く / そら / むな.しい",
+    "meaning": "empty; sky; vacant; vacuum; void",
+    "kind": "kanji",
+    "onReadings": [
+      "クウ"
+    ],
+    "kunReadings": [
+      "あ.き",
+      "あ.く",
+      "あ.ける",
+      "から",
+      "す.かす",
+      "す.く",
+      "そら",
+      "むな.しい"
+    ],
+    "strokes": 8,
+    "frequency": 304,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:急",
+    "deckId": "n4",
+    "word": "急",
+    "reading": "キュウ / いそ.ぎ / いそ.ぐ / せ.く",
+    "meaning": "emergency; hurry; steep; sudden",
+    "kind": "kanji",
+    "onReadings": [
+      "キュウ"
+    ],
+    "kunReadings": [
+      "いそ.ぎ",
+      "いそ.ぐ",
+      "せ.く"
+    ],
+    "strokes": 9,
+    "frequency": 309,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:止",
+    "deckId": "n4",
+    "word": "止",
+    "reading": "シ / -さ.し / -さ.す / -と.める / -ど.まり / -ど.め / -や.む / と.まる / と.める / とど.まる / とど.め / とど.める / や.む / や.める / よ.す",
+    "meaning": "halt; stop",
+    "kind": "kanji",
+    "onReadings": [
+      "シ"
+    ],
+    "kunReadings": [
+      "-さ.し",
+      "-さ.す",
+      "-と.める",
+      "-ど.まり",
+      "-ど.め",
+      "-や.む",
+      "と.まる",
+      "と.める",
+      "とど.まる",
+      "とど.め",
+      "とど.める",
+      "や.む",
+      "や.める",
+      "よ.す"
+    ],
+    "strokes": 4,
+    "frequency": 310,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:送",
+    "deckId": "n4",
+    "word": "送",
+    "reading": "ソウ / おく.る",
+    "meaning": "escort; send",
+    "kind": "kanji",
+    "onReadings": [
+      "ソウ"
+    ],
+    "kunReadings": [
+      "おく.る"
+    ],
+    "strokes": 9,
+    "frequency": 311,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:切",
+    "deckId": "n4",
+    "word": "切",
+    "reading": "サイ / セツ / -き.り / -き.る / -き.れ / -き.れる / -ぎ.り / -ぎ.れ / き.り / き.る / き.れ / き.れる",
+    "meaning": "be sharp; cut; cutoff",
+    "kind": "kanji",
+    "onReadings": [
+      "サイ",
+      "セツ"
+    ],
+    "kunReadings": [
+      "-き.り",
+      "-き.る",
+      "-き.れ",
+      "-き.れる",
+      "-ぎ.り",
+      "-ぎ.れ",
+      "き.り",
+      "き.る",
+      "き.れ",
+      "き.れる"
+    ],
+    "strokes": 4,
+    "frequency": 324,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:転",
+    "deckId": "n4",
+    "word": "転",
+    "reading": "テン / うたた / うつ.る / くる.めく / ころ.がす / ころ.がる / ころ.げる / ころ.ぶ / まろ.ぶ",
+    "meaning": "change; revolve; turn around",
+    "kind": "kanji",
+    "onReadings": [
+      "テン"
+    ],
+    "kunReadings": [
+      "うたた",
+      "うつ.る",
+      "くる.めく",
+      "ころ.がす",
+      "ころ.がる",
+      "ころ.げる",
+      "ころ.ぶ",
+      "まろ.ぶ"
+    ],
+    "strokes": 11,
+    "frequency": 327,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:研",
+    "deckId": "n4",
+    "word": "研",
+    "reading": "ケン / と.ぐ",
+    "meaning": "polish; sharpen; study of",
+    "kind": "kanji",
+    "onReadings": [
+      "ケン"
+    ],
+    "kunReadings": [
+      "と.ぐ"
+    ],
+    "strokes": 9,
+    "frequency": 336,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:足",
+    "deckId": "n4",
+    "word": "足",
+    "reading": "ソク / あし / た.す / た.りる / た.る",
+    "meaning": "be sufficient; counter for pairs of footwear; foot; leg",
+    "kind": "kanji",
+    "onReadings": [
+      "ソク"
+    ],
+    "kunReadings": [
+      "あし",
+      "た.す",
+      "た.りる",
+      "た.る"
+    ],
+    "strokes": 7,
+    "frequency": 343,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:究",
+    "deckId": "n4",
+    "word": "究",
+    "reading": "キュウ / ク / きわ.める",
+    "meaning": "research; study",
+    "kind": "kanji",
+    "onReadings": [
+      "キュウ",
+      "ク"
+    ],
+    "kunReadings": [
+      "きわ.める"
+    ],
+    "strokes": 7,
+    "frequency": 368,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:楽",
+    "deckId": "n4",
+    "word": "楽",
+    "reading": "ガク / ゴウ / ラク / この.む / たの.しい / たの.しむ",
+    "meaning": "comfort; ease; music",
+    "kind": "kanji",
+    "onReadings": [
+      "ガク",
+      "ゴウ",
+      "ラク"
+    ],
+    "kunReadings": [
+      "この.む",
+      "たの.しい",
+      "たの.しむ"
+    ],
+    "strokes": 13,
+    "frequency": 373,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:起",
+    "deckId": "n4",
+    "word": "起",
+    "reading": "キ / お.きる / お.こす / お.こる / おこ.す / た.つ",
+    "meaning": "get up; rouse; wake up",
+    "kind": "kanji",
+    "onReadings": [
+      "キ"
+    ],
+    "kunReadings": [
+      "お.きる",
+      "お.こす",
+      "お.こる",
+      "おこ.す",
+      "た.つ"
+    ],
+    "strokes": 10,
+    "frequency": 374,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:着",
+    "deckId": "n4",
+    "word": "着",
+    "reading": "ジャク / チャク / き.せる / き.る / つ.く / つ.ける",
+    "meaning": "arrive; counter for suits of clothing; don; wear",
+    "kind": "kanji",
+    "onReadings": [
+      "ジャク",
+      "チャク"
+    ],
+    "kunReadings": [
+      "き.せる",
+      "き.る",
+      "つ.く",
+      "つ.ける"
+    ],
+    "strokes": 12,
+    "frequency": 376,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:店",
+    "deckId": "n4",
+    "word": "店",
+    "reading": "テン / たな / みせ",
+    "meaning": "shop; store",
+    "kind": "kanji",
+    "onReadings": [
+      "テン"
+    ],
+    "kunReadings": [
+      "たな",
+      "みせ"
+    ],
+    "strokes": 8,
+    "frequency": 378,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:病",
+    "deckId": "n4",
+    "word": "病",
+    "reading": "ビョウ / ヘイ / -や.み / や.む / やまい",
+    "meaning": "ill; sick",
+    "kind": "kanji",
+    "onReadings": [
+      "ビョウ",
+      "ヘイ"
+    ],
+    "kunReadings": [
+      "-や.み",
+      "や.む",
+      "やまい"
+    ],
+    "strokes": 10,
+    "frequency": 384,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:質",
+    "deckId": "n4",
+    "word": "質",
+    "reading": "シチ / シツ / チ / ただ.す / たち / もと / わりふ",
+    "meaning": "matter; quality; substance; temperament",
+    "kind": "kanji",
+    "onReadings": [
+      "シチ",
+      "シツ",
+      "チ"
+    ],
+    "kunReadings": [
+      "ただ.す",
+      "たち",
+      "もと",
+      "わりふ"
+    ],
+    "strokes": 15,
+    "frequency": 389,
+    "grade": 5
+  },
+  {
+    "id": "kanji:n4:待",
+    "deckId": "n4",
+    "word": "待",
+    "reading": "タイ / -ま.ち / ま.つ",
+    "meaning": "depend on; wait",
+    "kind": "kanji",
+    "onReadings": [
+      "タイ"
+    ],
+    "kunReadings": [
+      "-ま.ち",
+      "ま.つ"
+    ],
+    "strokes": 9,
+    "frequency": 391,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:試",
+    "deckId": "n4",
+    "word": "試",
+    "reading": "シ / こころ.みる / ため.す",
+    "meaning": "attempt; experiment; ordeal; test; try",
+    "kind": "kanji",
+    "onReadings": [
+      "シ"
+    ],
+    "kunReadings": [
+      "こころ.みる",
+      "ため.す"
+    ],
+    "strokes": 13,
+    "frequency": 392,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:族",
+    "deckId": "n4",
+    "word": "族",
+    "reading": "ゾク",
+    "meaning": "family; tribe",
+    "kind": "kanji",
+    "onReadings": [
+      "ゾク"
+    ],
+    "kunReadings": [],
+    "strokes": 11,
+    "frequency": 393,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:銀",
+    "deckId": "n4",
+    "word": "銀",
+    "reading": "ギン / しろがね",
+    "meaning": "silver",
+    "kind": "kanji",
+    "onReadings": [
+      "ギン"
+    ],
+    "kunReadings": [
+      "しろがね"
+    ],
+    "strokes": 14,
+    "frequency": 395,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:早",
+    "deckId": "n4",
+    "word": "早",
+    "reading": "サッ / ソウ / さ- / はや / はや- / はや.い / はや.まる / はや.める",
+    "meaning": "early; fast",
+    "kind": "kanji",
+    "onReadings": [
+      "サッ",
+      "ソウ"
+    ],
+    "kunReadings": [
+      "さ-",
+      "はや",
+      "はや-",
+      "はや.い",
+      "はや.まる",
+      "はや.める"
+    ],
+    "strokes": 6,
+    "frequency": 402,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:映",
+    "deckId": "n4",
+    "word": "映",
+    "reading": "エイ / -ば.え / うつ.す / うつ.る / は.える",
+    "meaning": "projection; reflect; reflection",
+    "kind": "kanji",
+    "onReadings": [
+      "エイ"
+    ],
+    "kunReadings": [
+      "-ば.え",
+      "うつ.す",
+      "うつ.る",
+      "は.える"
+    ],
+    "strokes": 9,
+    "frequency": 404,
+    "grade": 6
+  },
+  {
+    "id": "kanji:n4:親",
+    "deckId": "n4",
+    "word": "親",
+    "reading": "シン / おや / おや- / した.しい / した.しむ",
+    "meaning": "dealer (cards); familiarity; intimacy; parent; relative",
+    "kind": "kanji",
+    "onReadings": [
+      "シン"
+    ],
+    "kunReadings": [
+      "おや",
+      "おや-",
+      "した.しい",
+      "した.しむ"
+    ],
+    "strokes": 16,
+    "frequency": 406,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:験",
+    "deckId": "n4",
+    "word": "験",
+    "reading": "ケン / ゲン / あかし / しるし / ため.す / ためし",
+    "meaning": "effect; testing; verification",
+    "kind": "kanji",
+    "onReadings": [
+      "ケン",
+      "ゲン"
+    ],
+    "kunReadings": [
+      "あかし",
+      "しるし",
+      "ため.す",
+      "ためし"
+    ],
+    "strokes": 18,
+    "frequency": 410,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:英",
+    "deckId": "n4",
+    "word": "英",
+    "reading": "エイ / はなぶさ",
+    "meaning": "England; English; calyx; hero; outstanding",
+    "kind": "kanji",
+    "onReadings": [
+      "エイ"
+    ],
+    "kunReadings": [
+      "はなぶさ"
+    ],
+    "strokes": 8,
+    "frequency": 430,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:医",
+    "deckId": "n4",
+    "word": "医",
+    "reading": "イ / い.する / い.やす / くすし",
+    "meaning": "doctor; medicine",
+    "kind": "kanji",
+    "onReadings": [
+      "イ"
+    ],
+    "kunReadings": [
+      "い.する",
+      "い.やす",
+      "くすし"
+    ],
+    "strokes": 7,
+    "frequency": 437,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:仕",
+    "deckId": "n4",
+    "word": "仕",
+    "reading": "シ / ジ / つか.える",
+    "meaning": "attend; doing; official; serve",
+    "kind": "kanji",
+    "onReadings": [
+      "シ",
+      "ジ"
+    ],
+    "kunReadings": [
+      "つか.える"
+    ],
+    "strokes": 5,
+    "frequency": 439,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:去",
+    "deckId": "n4",
+    "word": "去",
+    "reading": "キョ / コ / -さ.る / さ.る",
+    "meaning": "divorce; elapse; eliminate; gone; leave; past; quit",
+    "kind": "kanji",
+    "onReadings": [
+      "キョ",
+      "コ"
+    ],
+    "kunReadings": [
+      "-さ.る",
+      "さ.る"
+    ],
+    "strokes": 5,
+    "frequency": 440,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:味",
+    "deckId": "n4",
+    "word": "味",
+    "reading": "ミ / あじ / あじ.わう",
+    "meaning": "flavor; taste",
+    "kind": "kanji",
+    "onReadings": [
+      "ミ"
+    ],
+    "kunReadings": [
+      "あじ",
+      "あじ.わう"
+    ],
+    "strokes": 8,
+    "frequency": 442,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:写",
+    "deckId": "n4",
+    "word": "写",
+    "reading": "シャ / ジャ / うつ- / うつ.し / うつ.す / うつ.る",
+    "meaning": "be photographed; copy; describe",
+    "kind": "kanji",
+    "onReadings": [
+      "シャ",
+      "ジャ"
+    ],
+    "kunReadings": [
+      "うつ-",
+      "うつ.し",
+      "うつ.す",
+      "うつ.る"
+    ],
+    "strokes": 5,
+    "frequency": 453,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:字",
+    "deckId": "n4",
+    "word": "字",
+    "reading": "ジ / -な / あざ / あざな",
+    "meaning": "character; letter; section of village; word",
+    "kind": "kanji",
+    "onReadings": [
+      "ジ"
+    ],
+    "kunReadings": [
+      "-な",
+      "あざ",
+      "あざな"
+    ],
+    "strokes": 6,
+    "frequency": 485,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:答",
+    "deckId": "n4",
+    "word": "答",
+    "reading": "トウ / こた.え / こた.える",
+    "meaning": "answer; solution",
+    "kind": "kanji",
+    "onReadings": [
+      "トウ"
+    ],
+    "kunReadings": [
+      "こた.え",
+      "こた.える"
+    ],
+    "strokes": 12,
+    "frequency": 486,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:夜",
+    "deckId": "n4",
+    "word": "夜",
+    "reading": "ヤ / よ / よる",
+    "meaning": "evening; night",
+    "kind": "kanji",
+    "onReadings": [
+      "ヤ"
+    ],
+    "kunReadings": [
+      "よ",
+      "よる"
+    ],
+    "strokes": 8,
+    "frequency": 487,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:音",
+    "deckId": "n4",
+    "word": "音",
+    "reading": "-ノン / イン / オン / おと / ね",
+    "meaning": "noise; sound",
+    "kind": "kanji",
+    "onReadings": [
+      "-ノン",
+      "イン",
+      "オン"
+    ],
+    "kunReadings": [
+      "おと",
+      "ね"
+    ],
+    "strokes": 9,
+    "frequency": 491,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:注",
+    "deckId": "n4",
+    "word": "注",
+    "reading": "チュウ / さ.す / そそ.ぐ / つ.ぐ",
+    "meaning": "annotate; comment; concentrate on; flow into; irrigate; notes; pour; shed (tears)",
+    "kind": "kanji",
+    "onReadings": [
+      "チュウ"
+    ],
+    "kunReadings": [
+      "さ.す",
+      "そそ.ぐ",
+      "つ.ぐ"
+    ],
+    "strokes": 8,
+    "frequency": 497,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:帰",
+    "deckId": "n4",
+    "word": "帰",
+    "reading": "キ / おく.る / かえ.す / かえ.る / とつ.ぐ",
+    "meaning": "arrive at; homecoming; lead to; result in",
+    "kind": "kanji",
+    "onReadings": [
+      "キ"
+    ],
+    "kunReadings": [
+      "おく.る",
+      "かえ.す",
+      "かえ.る",
+      "とつ.ぐ"
+    ],
+    "strokes": 10,
+    "frequency": 504,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:古",
+    "deckId": "n4",
+    "word": "古",
+    "reading": "コ / -ふる.す / ふる- / ふる.い",
+    "meaning": "old",
+    "kind": "kanji",
+    "onReadings": [
+      "コ"
+    ],
+    "kunReadings": [
+      "-ふる.す",
+      "ふる-",
+      "ふる.い"
+    ],
+    "strokes": 5,
+    "frequency": 509,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:歌",
+    "deckId": "n4",
+    "word": "歌",
+    "reading": "カ / うた / うた.う",
+    "meaning": "sing; song",
+    "kind": "kanji",
+    "onReadings": [
+      "カ"
+    ],
+    "kunReadings": [
+      "うた",
+      "うた.う"
+    ],
+    "strokes": 14,
+    "frequency": 519,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:買",
+    "deckId": "n4",
+    "word": "買",
+    "reading": "バイ / か.う",
+    "meaning": "buy",
+    "kind": "kanji",
+    "onReadings": [
+      "バイ"
+    ],
+    "kunReadings": [
+      "か.う"
+    ],
+    "strokes": 12,
+    "frequency": 520,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:悪",
+    "deckId": "n4",
+    "word": "悪",
+    "reading": "アク / オ / -にく.い / あ.し / ああ / いずくに / いずくんぞ / にく.い / にく.む / わる- / わる.い",
+    "meaning": "bad; evil; false; rascal; vice; wrong",
+    "kind": "kanji",
+    "onReadings": [
+      "アク",
+      "オ"
+    ],
+    "kunReadings": [
+      "-にく.い",
+      "あ.し",
+      "ああ",
+      "いずくに",
+      "いずくんぞ",
+      "にく.い",
+      "にく.む",
+      "わる-",
+      "わる.い"
+    ],
+    "strokes": 11,
+    "frequency": 530,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:図",
+    "deckId": "n4",
+    "word": "図",
+    "reading": "ズ / ト / え / はか.る",
+    "meaning": "audacious; drawing; extraordinary; map; plan",
+    "kind": "kanji",
+    "onReadings": [
+      "ズ",
+      "ト"
+    ],
+    "kunReadings": [
+      "え",
+      "はか.る"
+    ],
+    "strokes": 7,
+    "frequency": 539,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:週",
+    "deckId": "n4",
+    "word": "週",
+    "reading": "シュウ",
+    "meaning": "week",
+    "kind": "kanji",
+    "onReadings": [
+      "シュウ"
+    ],
+    "kunReadings": [],
+    "strokes": 11,
+    "frequency": 540,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:室",
+    "deckId": "n4",
+    "word": "室",
+    "reading": "シツ / むろ",
+    "meaning": "apartment; cellar; chamber; greenhouse; room",
+    "kind": "kanji",
+    "onReadings": [
+      "シツ"
+    ],
+    "kunReadings": [
+      "むろ"
+    ],
+    "strokes": 9,
+    "frequency": 550,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:歩",
+    "deckId": "n4",
+    "word": "歩",
+    "reading": "フ / ブ / ホ / あゆ.む / ある.く",
+    "meaning": "counter for steps; walk",
+    "kind": "kanji",
+    "onReadings": [
+      "フ",
+      "ブ",
+      "ホ"
+    ],
+    "kunReadings": [
+      "あゆ.む",
+      "ある.く"
+    ],
+    "strokes": 8,
+    "frequency": 554,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:風",
+    "deckId": "n4",
+    "word": "風",
+    "reading": "フ / フウ / かざ- / かぜ",
+    "meaning": "air; manner; style; wind",
+    "kind": "kanji",
+    "onReadings": [
+      "フ",
+      "フウ"
+    ],
+    "kunReadings": [
+      "かざ-",
+      "かぜ"
+    ],
+    "strokes": 9,
+    "frequency": 558,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:紙",
+    "deckId": "n4",
+    "word": "紙",
+    "reading": "シ / かみ",
+    "meaning": "paper",
+    "kind": "kanji",
+    "onReadings": [
+      "シ"
+    ],
+    "kunReadings": [
+      "かみ"
+    ],
+    "strokes": 10,
+    "frequency": 559,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:黒",
+    "deckId": "n4",
+    "word": "黒",
+    "reading": "コク / くろ / くろ.い / くろ.ずむ",
+    "meaning": "black",
+    "kind": "kanji",
+    "onReadings": [
+      "コク"
+    ],
+    "kunReadings": [
+      "くろ",
+      "くろ.い",
+      "くろ.ずむ"
+    ],
+    "strokes": 11,
+    "frequency": 573,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:花",
+    "deckId": "n4",
+    "word": "花",
+    "reading": "カ / ケ / はな",
+    "meaning": "flower",
+    "kind": "kanji",
+    "onReadings": [
+      "カ",
+      "ケ"
+    ],
+    "kunReadings": [
+      "はな"
+    ],
+    "strokes": 7,
+    "frequency": 578,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:春",
+    "deckId": "n4",
+    "word": "春",
+    "reading": "シュン / はる",
+    "meaning": "spring (season); springtime",
+    "kind": "kanji",
+    "onReadings": [
+      "シュン"
+    ],
+    "kunReadings": [
+      "はる"
+    ],
+    "strokes": 9,
+    "frequency": 579,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:赤",
+    "deckId": "n4",
+    "word": "赤",
+    "reading": "シャク / セキ / あか / あか- / あか.い / あか.らむ / あか.らめる",
+    "meaning": "red",
+    "kind": "kanji",
+    "onReadings": [
+      "シャク",
+      "セキ"
+    ],
+    "kunReadings": [
+      "あか",
+      "あか-",
+      "あか.い",
+      "あか.らむ",
+      "あか.らめる"
+    ],
+    "strokes": 7,
+    "frequency": 584,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:青",
+    "deckId": "n4",
+    "word": "青",
+    "reading": "ショウ / セイ / あお / あお- / あお.い",
+    "meaning": "blue; green",
+    "kind": "kanji",
+    "onReadings": [
+      "ショウ",
+      "セイ"
+    ],
+    "kunReadings": [
+      "あお",
+      "あお-",
+      "あお.い"
+    ],
+    "strokes": 8,
+    "frequency": 589,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:館",
+    "deckId": "n4",
+    "word": "館",
+    "reading": "カン / たて / やかた",
+    "meaning": "building; large building; mansion; palace",
+    "kind": "kanji",
+    "onReadings": [
+      "カン"
+    ],
+    "kunReadings": [
+      "たて",
+      "やかた"
+    ],
+    "strokes": 16,
+    "frequency": 613,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:屋",
+    "deckId": "n4",
+    "word": "屋",
+    "reading": "オク / や",
+    "meaning": "dealer; house; roof; seller; shop",
+    "kind": "kanji",
+    "onReadings": [
+      "オク"
+    ],
+    "kunReadings": [
+      "や"
+    ],
+    "strokes": 9,
+    "frequency": 616,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:色",
+    "deckId": "n4",
+    "word": "色",
+    "reading": "シキ / ショク / いろ",
+    "meaning": "color",
+    "kind": "kanji",
+    "onReadings": [
+      "シキ",
+      "ショク"
+    ],
+    "kunReadings": [
+      "いろ"
+    ],
+    "strokes": 6,
+    "frequency": 621,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:走",
+    "deckId": "n4",
+    "word": "走",
+    "reading": "ソウ / はし.る",
+    "meaning": "run",
+    "kind": "kanji",
+    "onReadings": [
+      "ソウ"
+    ],
+    "kunReadings": [
+      "はし.る"
+    ],
+    "strokes": 7,
+    "frequency": 626,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:秋",
+    "deckId": "n4",
+    "word": "秋",
+    "reading": "シュウ / あき / とき",
+    "meaning": "autumn",
+    "kind": "kanji",
+    "onReadings": [
+      "シュウ"
+    ],
+    "kunReadings": [
+      "あき",
+      "とき"
+    ],
+    "strokes": 9,
+    "frequency": 635,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:夏",
+    "deckId": "n4",
+    "word": "夏",
+    "reading": "カ / ガ / ゲ / なつ",
+    "meaning": "summer",
+    "kind": "kanji",
+    "onReadings": [
+      "カ",
+      "ガ",
+      "ゲ"
+    ],
+    "kunReadings": [
+      "なつ"
+    ],
+    "strokes": 10,
+    "frequency": 659,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:習",
+    "deckId": "n4",
+    "word": "習",
+    "reading": "シュウ / ジュ / なら.い / なら.う",
+    "meaning": "learn",
+    "kind": "kanji",
+    "onReadings": [
+      "シュウ",
+      "ジュ"
+    ],
+    "kunReadings": [
+      "なら.い",
+      "なら.う"
+    ],
+    "strokes": 11,
+    "frequency": 706,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:駅",
+    "deckId": "n4",
+    "word": "駅",
+    "reading": "エキ",
+    "meaning": "station",
+    "kind": "kanji",
+    "onReadings": [
+      "エキ"
+    ],
+    "kunReadings": [],
+    "strokes": 14,
+    "frequency": 724,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:洋",
+    "deckId": "n4",
+    "word": "洋",
+    "reading": "ヨウ",
+    "meaning": "Western style; foreign; ocean; sea",
+    "kind": "kanji",
+    "onReadings": [
+      "ヨウ"
+    ],
+    "kunReadings": [],
+    "strokes": 9,
+    "frequency": 763,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:旅",
+    "deckId": "n4",
+    "word": "旅",
+    "reading": "リョ / たび",
+    "meaning": "travel; trip",
+    "kind": "kanji",
+    "onReadings": [
+      "リョ"
+    ],
+    "kunReadings": [
+      "たび"
+    ],
+    "strokes": 10,
+    "frequency": 783,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:服",
+    "deckId": "n4",
+    "word": "服",
+    "reading": "フク",
+    "meaning": "admit; clothing; discharge; obey",
+    "kind": "kanji",
+    "onReadings": [
+      "フク"
+    ],
+    "kunReadings": [],
+    "strokes": 8,
+    "frequency": 873,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:夕",
+    "deckId": "n4",
+    "word": "夕",
+    "reading": "セキ / ゆう",
+    "meaning": "evening",
+    "kind": "kanji",
+    "onReadings": [
+      "セキ"
+    ],
+    "kunReadings": [
+      "ゆう"
+    ],
+    "strokes": 3,
+    "frequency": 924,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:借",
+    "deckId": "n4",
+    "word": "借",
+    "reading": "シャク / か.りる",
+    "meaning": "borrow; rent",
+    "kind": "kanji",
+    "onReadings": [
+      "シャク"
+    ],
+    "kunReadings": [
+      "か.りる"
+    ],
+    "strokes": 10,
+    "frequency": 932,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:曜",
+    "deckId": "n4",
+    "word": "曜",
+    "reading": "ヨウ",
+    "meaning": "weekday",
+    "kind": "kanji",
+    "onReadings": [
+      "ヨウ"
+    ],
+    "kunReadings": [],
+    "strokes": 18,
+    "frequency": 940,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:飲",
+    "deckId": "n4",
+    "word": "飲",
+    "reading": "イン / オン / -の.み / の.む",
+    "meaning": "drink; smoke; take",
+    "kind": "kanji",
+    "onReadings": [
+      "イン",
+      "オン"
+    ],
+    "kunReadings": [
+      "-の.み",
+      "の.む"
+    ],
+    "strokes": 12,
+    "frequency": 969,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:肉",
+    "deckId": "n4",
+    "word": "肉",
+    "reading": "ニク / しし",
+    "meaning": "meat",
+    "kind": "kanji",
+    "onReadings": [
+      "ニク"
+    ],
+    "kunReadings": [
+      "しし"
+    ],
+    "strokes": 6,
+    "frequency": 986,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:貸",
+    "deckId": "n4",
+    "word": "貸",
+    "reading": "タイ / か.し- / か.す / かし-",
+    "meaning": "lend",
+    "kind": "kanji",
+    "onReadings": [
+      "タイ"
+    ],
+    "kunReadings": [
+      "か.し-",
+      "か.す",
+      "かし-"
+    ],
+    "strokes": 12,
+    "frequency": 995,
+    "grade": 5
+  },
+  {
+    "id": "kanji:n4:堂",
+    "deckId": "n4",
+    "word": "堂",
+    "reading": "ドウ",
+    "meaning": "hall; public chamber",
+    "kind": "kanji",
+    "onReadings": [
+      "ドウ"
+    ],
+    "kunReadings": [],
+    "strokes": 11,
+    "frequency": 1010,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:鳥",
+    "deckId": "n4",
+    "word": "鳥",
+    "reading": "チョウ / とり",
+    "meaning": "bird; chicken",
+    "kind": "kanji",
+    "onReadings": [
+      "チョウ"
+    ],
+    "kunReadings": [
+      "とり"
+    ],
+    "strokes": 11,
+    "frequency": 1043,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:飯",
+    "deckId": "n4",
+    "word": "飯",
+    "reading": "ハン / めし",
+    "meaning": "boiled rice; meal",
+    "kind": "kanji",
+    "onReadings": [
+      "ハン"
+    ],
+    "kunReadings": [
+      "めし"
+    ],
+    "strokes": 12,
+    "frequency": 1046,
+    "grade": 4
+  },
+  {
+    "id": "kanji:n4:勉",
+    "deckId": "n4",
+    "word": "勉",
+    "reading": "ベン / つと.める",
+    "meaning": "diligent; encourage; endeavour; exertion; make effort; strive",
+    "kind": "kanji",
+    "onReadings": [
+      "ベン"
+    ],
+    "kunReadings": [
+      "つと.める"
+    ],
+    "strokes": 10,
+    "frequency": 1066,
+    "grade": 3
+  },
+  {
+    "id": "kanji:n4:冬",
+    "deckId": "n4",
+    "word": "冬",
+    "reading": "トウ / ふゆ",
+    "meaning": "winter",
+    "kind": "kanji",
+    "onReadings": [
+      "トウ"
+    ],
+    "kunReadings": [
+      "ふゆ"
+    ],
+    "strokes": 5,
+    "frequency": 1090,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:昼",
+    "deckId": "n4",
+    "word": "昼",
+    "reading": "チュウ / ひる",
+    "meaning": "daytime; noon",
+    "kind": "kanji",
+    "onReadings": [
+      "チュウ"
+    ],
+    "kunReadings": [
+      "ひる"
+    ],
+    "strokes": 9,
+    "frequency": 1115,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:茶",
+    "deckId": "n4",
+    "word": "茶",
+    "reading": "サ / チャ",
+    "meaning": "tea",
+    "kind": "kanji",
+    "onReadings": [
+      "サ",
+      "チャ"
+    ],
+    "kunReadings": [],
+    "strokes": 9,
+    "frequency": 1116,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:弟",
+    "deckId": "n4",
+    "word": "弟",
+    "reading": "ダイ / テイ / デ / おとうと",
+    "meaning": "faithful service to elders; younger brother",
+    "kind": "kanji",
+    "onReadings": [
+      "ダイ",
+      "テイ",
+      "デ"
+    ],
+    "kunReadings": [
+      "おとうと"
+    ],
+    "strokes": 7,
+    "frequency": 1161,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:牛",
+    "deckId": "n4",
+    "word": "牛",
+    "reading": "ギュウ / うし",
+    "meaning": "cow",
+    "kind": "kanji",
+    "onReadings": [
+      "ギュウ"
+    ],
+    "kunReadings": [
+      "うし"
+    ],
+    "strokes": 4,
+    "frequency": 1202,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:魚",
+    "deckId": "n4",
+    "word": "魚",
+    "reading": "ギョ / -ざかな / うお / さかな",
+    "meaning": "fish",
+    "kind": "kanji",
+    "onReadings": [
+      "ギョ"
+    ],
+    "kunReadings": [
+      "-ざかな",
+      "うお",
+      "さかな"
+    ],
+    "strokes": 11,
+    "frequency": 1208,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:兄",
+    "deckId": "n4",
+    "word": "兄",
+    "reading": "キョウ / ケイ / あに",
+    "meaning": "big brother; elder brother",
+    "kind": "kanji",
+    "onReadings": [
+      "キョウ",
+      "ケイ"
+    ],
+    "kunReadings": [
+      "あに"
+    ],
+    "strokes": 5,
+    "frequency": 1219,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:犬",
+    "deckId": "n4",
+    "word": "犬",
+    "reading": "ケン / いぬ / いぬ-",
+    "meaning": "dog",
+    "kind": "kanji",
+    "onReadings": [
+      "ケン"
+    ],
+    "kunReadings": [
+      "いぬ",
+      "いぬ-"
+    ],
+    "strokes": 4,
+    "frequency": 1326,
+    "grade": 1
+  },
+  {
+    "id": "kanji:n4:妹",
+    "deckId": "n4",
+    "word": "妹",
+    "reading": "マイ / いもうと",
+    "meaning": "younger sister",
+    "kind": "kanji",
+    "onReadings": [
+      "マイ"
+    ],
+    "kunReadings": [
+      "いもうと"
+    ],
+    "strokes": 8,
+    "frequency": 1446,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:姉",
+    "deckId": "n4",
+    "word": "姉",
+    "reading": "シ / あね / はは",
+    "meaning": "elder sister",
+    "kind": "kanji",
+    "onReadings": [
+      "シ"
+    ],
+    "kunReadings": [
+      "あね",
+      "はは"
+    ],
+    "strokes": 8,
+    "frequency": 1473,
+    "grade": 2
+  },
+  {
+    "id": "kanji:n4:漢",
+    "deckId": "n4",
+    "word": "漢",
+    "reading": "カン",
+    "meaning": "China; Sino-",
+    "kind": "kanji",
+    "onReadings": [
+      "カン"
+    ],
+    "kunReadings": [],
+    "strokes": 13,
+    "frequency": 1487,
+    "grade": 3
+  }
+]

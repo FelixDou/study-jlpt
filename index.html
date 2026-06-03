@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Study JLPT</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="topbar" aria-label="App header">
+        <div>
+          <p class="eyebrow">Japanese review</p>
+          <button id="appTitle" class="title-button" type="button">
+            <h1>Study JLPT</h1>
+          </button>
+        </div>
+        <div class="topbar-actions">
+          <button id="exportProgress" class="ghost-button" type="button">Export progress</button>
+          <button id="importProgress" class="ghost-button" type="button">Import progress</button>
+          <input id="importProgressFile" class="hidden" type="file" accept="application/json,.json">
+          <button id="resetProgress" class="ghost-button" type="button">Reset progress</button>
+        </div>
+      </section>
+
+      <section id="modePanel" class="panel" aria-labelledby="modeTitle">
+        <div class="section-heading mode-heading">
+          <p class="eyebrow">Study modes</p>
+          <h2 id="modeTitle">Choose what to review</h2>
+          <p>Pick the material and direction for this session.</p>
+        </div>
+        <div class="mode-grid">
+          <button class="mode-card" type="button" data-mode-id="vocabulary">
+            <span class="mode-mark" aria-hidden="true">語</span>
+            <span class="mode-copy">
+              <strong>JLPT Vocabulary</strong>
+              <span>Japanese prompt, English answer.</span>
+            </span>
+          </button>
+          <button class="mode-card" type="button" data-mode-id="vocabularyReverse">
+            <span class="mode-mark" aria-hidden="true">英</span>
+            <span class="mode-copy">
+              <strong>EN -> Japanese</strong>
+              <span>English prompt, Japanese or romaji answer.</span>
+            </span>
+          </button>
+          <button class="mode-card" type="button" data-mode-id="kanji">
+            <span class="mode-mark" aria-hidden="true">漢</span>
+            <span class="mode-copy">
+              <strong>JLPT Kanji</strong>
+              <span>Kanji prompt, English meaning answer.</span>
+            </span>
+          </button>
+          <button class="mode-card" type="button" data-mode-id="grammar">
+            <span class="mode-mark" aria-hidden="true">文</span>
+            <span class="mode-copy">
+              <strong>JLPT Grammar</strong>
+              <span>Grammar point prompt, English answer.</span>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section id="setupPanel" class="panel" aria-labelledby="setupTitle">
+        <div class="section-heading">
+          <h2 id="setupTitle">Choose decks</h2>
+          <p>Select one or more JLPT levels for this session.</p>
+        </div>
+        <div id="deckChoices" class="deck-grid"></div>
+        <div class="setup-actions">
+          <button id="startQuiz" class="primary-button" type="button">Start review</button>
+          <p id="setupMessage" class="muted" role="status"></p>
+        </div>
+      </section>
+
+      <section id="rememberPanel" class="panel overview-panel" aria-labelledby="rememberTitle">
+        <div class="section-heading remember-heading">
+          <div>
+            <h2 id="rememberTitle">To remember</h2>
+            <p id="rememberSummary">Words you recognize but want to keep revisiting.</p>
+          </div>
+          <button id="startRememberQuiz" class="primary-button" type="button">Review to remember</button>
+        </div>
+        <div id="rememberWords" class="remember-list"></div>
+      </section>
+
+      <section id="overviewPanel" class="panel overview-panel" aria-labelledby="overviewTitle">
+        <div class="section-heading">
+          <h2 id="overviewTitle">Vocabulary lists</h2>
+          <p id="overviewSummary">Choose a deck to inspect learned and remaining words.</p>
+        </div>
+        <label class="search-field" for="overviewSearch">
+          <span>Search English meaning</span>
+          <input id="overviewSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Type an English word">
+        </label>
+        <div id="overviewDeckTabs" class="deck-tabs" aria-label="Vocabulary list deck"></div>
+        <section id="wordDetailPanel" class="word-detail-panel hidden" aria-labelledby="wordDetailTitle">
+          <div>
+            <p id="wordDetailDeck" class="eyebrow">Deck</p>
+            <div id="wordDetailWord" class="word-detail-word"></div>
+            <p id="wordDetailMeaning" class="word-detail-meaning"></p>
+            <p id="wordDetailStatus" class="muted"></p>
+            <div id="wordDetailExtra" class="word-detail-extra"></div>
+          </div>
+          <div class="word-detail-actions">
+            <button id="setWordDue" class="secondary-button" type="button">Set 0/2</button>
+            <button id="setWordLearned" class="secondary-button success-button" type="button">Set learned</button>
+            <button id="setWordRemember" class="secondary-button remember-button" type="button">Set to remember</button>
+          </div>
+        </section>
+        <div class="word-lists">
+          <section class="word-list-panel" aria-labelledby="learnedListTitle">
+            <div class="list-heading">
+              <h3 id="learnedListTitle">Learned</h3>
+              <span id="learnedListCount">0</span>
+            </div>
+            <div id="learnedWords" class="word-list"></div>
+          </section>
+          <section class="word-list-panel" aria-labelledby="dueListTitle">
+            <div class="list-heading">
+              <h3 id="dueListTitle">Yet to learn</h3>
+              <span id="dueListCount">0</span>
+            </div>
+            <div id="dueWords" class="word-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="quizPanel" class="panel hidden" aria-labelledby="quizTitle">
+        <div class="quiz-header">
+          <div>
+            <p id="deckLabel" class="eyebrow">Decks</p>
+            <h2 id="quizTitle">Translate this word</h2>
+          </div>
+          <div class="quiz-tools">
+            <div class="stats" aria-label="Progress">
+              <span><strong id="remainingCount">0</strong> due</span>
+              <span><strong id="learnedCount">0</strong> learned</span>
+            </div>
+            <button id="backToMenu" class="ghost-button" type="button">Main menu</button>
+          </div>
+        </div>
+
+        <div id="card" class="word-card">
+          <div id="wordDisplay" class="word-display"></div>
+        </div>
+
+        <form id="answerForm" class="answer-form">
+          <label for="answerInput">English translation</label>
+          <div class="answer-row">
+            <input id="answerInput" type="text" autocomplete="off" spellcheck="false" placeholder="Type an English meaning">
+            <button id="submitAnswer" class="primary-button" type="submit">Submit</button>
+            <button id="dontKnow" class="secondary-button" type="button">I don't know</button>
+            <button id="knowWord" class="secondary-button success-button" type="button">I know this word</button>
+          </div>
+        </form>
+
+        <div id="feedback" class="feedback hidden" role="status" aria-live="polite">
+          <div>
+            <p id="resultLabel" class="result-label"></p>
+            <p id="answerReveal" class="answer-reveal"></p>
+            <div id="exampleReveal" class="example-reveal"></div>
+            <p id="progressNote" class="muted"></p>
+          </div>
+          <div class="feedback-actions">
+            <button id="acceptAnswer" class="secondary-button success-button hidden" type="button">Accept my answer</button>
+            <button id="toggleRemember" class="secondary-button remember-button hidden" type="button">Add to remember</button>
+            <button id="nextWord" class="primary-button" type="button">Next word</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="completePanel" class="panel hidden" aria-labelledby="completeTitle">
+        <h2 id="completeTitle">Session complete</h2>
+        <p>Every word in the selected decks has reached two correct answers and is marked learned.</p>
+        <button id="chooseAgain" class="primary-button" type="button">Choose decks</button>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -58,6 +58,19 @@ input {
   margin-bottom: 24px;
 }
 
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-logo {
+  width: clamp(42px, 5vw, 58px);
+  height: clamp(42px, 5vw, 58px);
+  border-radius: 12px;
+  box-shadow: 0 10px 22px rgba(20, 79, 74, 0.18);
+}
+
 .topbar-actions {
   display: flex;
   align-items: center;

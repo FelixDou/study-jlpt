@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Study JLPT logo">
+  <rect width="64" height="64" rx="14" fill="#144f4a"/>
+  <path d="M14 14h36v36H14z" fill="#f5f4ef"/>
+  <path d="M19 20h26M19 31h26M19 42h26" stroke="#d9d5cb" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="44" cy="20" r="4" fill="#1f6f68"/>
+  <text x="32" y="42" text-anchor="middle" font-family="Hiragino Sans, Yu Gothic, Meiryo, sans-serif" font-size="27" font-weight="800" fill="#20201d">学</text>
+</svg>

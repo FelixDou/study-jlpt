@@ -45,6 +45,8 @@ Then open:
 http://localhost:8001/
 ```
 
+Do not open `index.html` directly with a `file://` URL. Browsers block the deck files in that mode, so the app needs either the public website URL or the local server above.
+
 ## Notes For Contributors
 
 The app is intentionally static-site friendly. GitHub Pages serves `index.html`, `styles.css`, `app.js`, and the files in `data/` directly. There is no account system or cloud database.

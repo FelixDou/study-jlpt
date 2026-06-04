@@ -185,6 +185,15 @@ async function init() {
   bindEvents();
   showModeMenu();
 
+  if (window.location.protocol === "file:") {
+    state.progressBackend = "browser";
+    state.progress = loadBrowserProgress();
+    els.setupMessage.textContent =
+      "Decks cannot load from a file:// URL. Open https://felixdou.github.io/study-jlpt/ or run python3 server.py and use http://localhost:8001/.";
+    els.startQuiz.disabled = true;
+    return;
+  }
+
   let loadedProgressFromFile = false;
   try {
     await loadProgress();

@@ -343,6 +343,8 @@ function renderDeckChoices() {
     .map((deck) => {
       const words = getActiveDeckMap().get(deck.id) || [];
       const learned = words.filter((word) => isLearned(word)).length;
+      const due = Math.max(words.length - learned, 0);
+      const percent = words.length ? Math.round((learned / words.length) * 100) : 0;
       const progress = words.length ? `${learned}/${words.length} learned` : "Loading";
       const checked = selectedNow.size ? selectedNow.has(deck.id) : deck.id === "n5";
       return `
@@ -351,6 +353,10 @@ function renderDeckChoices() {
           <span>
             <strong>${deck.label}</strong>
             <small>${progress}</small>
+            <span class="deck-progress" aria-hidden="true">
+              <span style="width: ${percent}%"></span>
+            </span>
+            <em>${words.length ? `${due} due` : "Preparing deck"}</em>
           </span>
         </label>
       `;

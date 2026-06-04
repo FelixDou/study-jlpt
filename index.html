@@ -13,10 +13,11 @@
         <div class="brand-block">
           <img class="brand-logo" src="favicon.svg" alt="" aria-hidden="true">
           <div>
-          <p class="eyebrow">Japanese review</p>
-          <button id="appTitle" class="title-button" type="button">
-            <h1>Study JLPT</h1>
-          </button>
+            <p class="eyebrow">Japanese review</p>
+            <button id="appTitle" class="title-button" type="button">
+              <h1>Study JLPT</h1>
+            </button>
+            <p class="brand-subtitle">Vocabulary, kanji, grammar, and recall practice</p>
           </div>
         </div>
         <div class="topbar-actions">
@@ -27,39 +28,47 @@
         </div>
       </section>
 
-      <section id="modePanel" class="panel" aria-labelledby="modeTitle">
+      <section id="modePanel" class="panel mode-panel" aria-labelledby="modeTitle">
         <div class="section-heading mode-heading">
           <p class="eyebrow">Study modes</p>
-          <h2 id="modeTitle">Choose what to review</h2>
-          <p>Pick the material and direction for this session.</p>
+          <h2 id="modeTitle">Choose your training path</h2>
+          <p>Pick the skill you want to strengthen, then choose the JLPT levels for this session.</p>
         </div>
         <div class="mode-grid">
-          <button class="mode-card" type="button" data-mode-id="vocabulary">
+          <button class="mode-card mode-vocabulary" type="button" data-mode-id="vocabulary">
             <span class="mode-mark" aria-hidden="true">語</span>
             <span class="mode-copy">
+              <span class="mode-kicker">Recognition</span>
               <strong>JLPT Vocabulary</strong>
               <span>Japanese prompt, English answer.</span>
+              <span class="mode-card-meta">Word meaning · furigana shown</span>
             </span>
           </button>
-          <button class="mode-card" type="button" data-mode-id="vocabularyReverse">
+          <button class="mode-card mode-production" type="button" data-mode-id="vocabularyReverse">
             <span class="mode-mark" aria-hidden="true">英</span>
             <span class="mode-copy">
-              <strong>EN -> Japanese</strong>
+              <span class="mode-kicker">Production</span>
+              <strong>EN to Japanese</strong>
               <span>English prompt, Japanese or romaji answer.</span>
+              <span class="mode-card-meta">Kana · kanji · romaji accepted</span>
             </span>
           </button>
-          <button class="mode-card" type="button" data-mode-id="kanji">
+          <button class="mode-card mode-kanji" type="button" data-mode-id="kanji">
             <span class="mode-mark" aria-hidden="true">漢</span>
             <span class="mode-copy">
+              <span class="mode-kicker">Characters</span>
               <strong>JLPT Kanji</strong>
               <span>Kanji prompt, English meaning answer.</span>
+              <span class="mode-card-meta">Important vocabulary included</span>
             </span>
           </button>
-          <button class="mode-card" type="button" data-mode-id="grammar">
+          <button class="mode-card mode-grammar" type="button" data-mode-id="grammar">
             <span class="mode-mark" aria-hidden="true">文</span>
             <span class="mode-copy">
+              <span class="mode-kicker">Patterns</span>
               <strong>JLPT Grammar</strong>
               <span>Grammar point prompt, English answer.</span>
+              <span class="mode-card-meta">Connection patterns · examples</span>
             </span>
           </button>
         </div>
@@ -74,9 +83,9 @@
           <button id="dismissOnboarding" class="ghost-button compact-button" type="button">Got it</button>
         </div>
         <div class="onboarding-grid">
-          <p><strong>Pick a mode.</strong> Vocabulary, reverse vocabulary, kanji, and grammar keep separate progress.</p>
-          <p><strong>Choose levels.</strong> Combine N5-N1 decks for the session you want.</p>
-          <p><strong>Keep progress.</strong> Use export/import when moving between devices.</p>
+          <p><strong>1. Pick a path.</strong> Recognition, production, kanji, and grammar keep separate progress.</p>
+          <p><strong>2. Choose levels.</strong> Combine N5-N1 decks for a focused or mixed session.</p>
+          <p><strong>3. Keep progress.</strong> Use export/import when moving between devices.</p>
         </div>
       </section>
 

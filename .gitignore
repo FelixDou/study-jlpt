@@ -6,3 +6,4 @@ output/
 data/example_chunks/
 data/example_tasks/
 *.log
+visual-check*.png

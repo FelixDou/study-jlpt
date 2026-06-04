@@ -129,6 +129,11 @@ h2 {
   margin-top: 16px;
 }
 
+.onboarding-panel,
+.stats-panel {
+  margin-top: 16px;
+}
+
 .section-heading {
   display: grid;
   gap: 6px;
@@ -148,6 +153,99 @@ h2 {
   align-items: center;
   display: flex;
   justify-content: space-between;
+}
+
+.onboarding-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.onboarding-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.onboarding-grid p {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfaf7;
+  color: var(--muted);
+  line-height: 1.42;
+}
+
+.onboarding-grid strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+
+.progress-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.progress-stat-grid article {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfaf7;
+}
+
+.progress-stat-grid strong {
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.progress-stat-grid span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.hardest-panel {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfaf7;
+  overflow: hidden;
+}
+
+.hardest-list {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+}
+
+.hardest-item {
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+}
+
+.hardest-item div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hardest-item strong {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: 1.04rem;
+}
+
+.hardest-item p,
+.hardest-item small {
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .muted {
@@ -913,6 +1011,7 @@ rt {
   }
 
   .remember-heading,
+  .onboarding-heading,
   .remember-item,
   .word-detail-panel,
   .word-detail-actions,
@@ -931,7 +1030,9 @@ rt {
   }
 
   .mode-grid,
-  .word-lists {
+  .word-lists,
+  .onboarding-grid,
+  .progress-stat-grid {
     grid-template-columns: 1fr;
   }
 

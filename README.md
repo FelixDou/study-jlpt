@@ -9,7 +9,7 @@ https://felixdou.github.io/study-jlpt/
 ## What You Can Study
 
 - Vocabulary: Japanese word to English meaning
-- Reverse vocabulary: English meaning to Japanese word, kana, or romaji
+- Reverse vocabulary: English meaning to Japanese word, full kana, or romaji
 - Kanji: kanji to English meaning, with readings and useful vocabulary
 - Grammar: grammar point to English meaning, with usage patterns and example sentences
 
@@ -20,6 +20,8 @@ Choose one or more JLPT levels, then answer the prompt shown on screen. After ea
 An item is considered learned after two correct answers. Learned items stop appearing in normal review. If you already know an item, use the "I know this..." button to mark it learned immediately.
 
 If an answer is marked wrong but you think it should be accepted, use "Accept my answer" to save that answer for next time.
+
+The main menu also shows basic review statistics, including today's review count, accuracy, learned items, streak, and items you miss most often.
 
 ## Extra Review
 

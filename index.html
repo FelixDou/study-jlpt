@@ -65,6 +65,53 @@
         </div>
       </section>
 
+      <section id="onboardingPanel" class="panel onboarding-panel" aria-labelledby="onboardingTitle">
+        <div class="section-heading onboarding-heading">
+          <div>
+            <p class="eyebrow">Start here</p>
+            <h2 id="onboardingTitle">Review in four directions</h2>
+          </div>
+          <button id="dismissOnboarding" class="ghost-button compact-button" type="button">Got it</button>
+        </div>
+        <div class="onboarding-grid">
+          <p><strong>Pick a mode.</strong> Vocabulary, reverse vocabulary, kanji, and grammar keep separate progress.</p>
+          <p><strong>Choose levels.</strong> Combine N5-N1 decks for the session you want.</p>
+          <p><strong>Keep progress.</strong> Use export/import when moving between devices.</p>
+        </div>
+      </section>
+
+      <section id="statsPanel" class="panel stats-panel" aria-labelledby="statsTitle">
+        <div class="section-heading">
+          <p class="eyebrow">Your progress</p>
+          <h2 id="statsTitle">Review statistics</h2>
+        </div>
+        <div class="progress-stat-grid" aria-label="Review statistics">
+          <article>
+            <strong id="reviewedTodayCount">0</strong>
+            <span>reviewed today</span>
+          </article>
+          <article>
+            <strong id="accuracyTodayCount">0%</strong>
+            <span>today accuracy</span>
+          </article>
+          <article>
+            <strong id="learnedTodayCount">0</strong>
+            <span>learned today</span>
+          </article>
+          <article>
+            <strong id="streakCount">0</strong>
+            <span>day streak</span>
+          </article>
+        </div>
+        <div class="hardest-panel">
+          <div class="associated-heading">
+            <strong>Hardest items</strong>
+            <span id="hardestCount">0</span>
+          </div>
+          <div id="hardestItems" class="hardest-list"></div>
+        </div>
+      </section>
+
       <section id="setupPanel" class="panel" aria-labelledby="setupTitle">
         <div class="section-heading">
           <h2 id="setupTitle">Choose decks</h2>

@@ -298,6 +298,7 @@ function bindEvents() {
   els.exportProgress.addEventListener("click", exportProgress);
   els.importProgress.addEventListener("click", () => els.importProgressFile.click());
   els.importProgressFile.addEventListener("change", importProgress);
+  els.exampleReveal.addEventListener("click", handleExampleRevealClick);
   els.learnedWords.addEventListener("click", handleWordListClick);
   els.dueWords.addEventListener("click", handleWordListClick);
   els.setWordDue.addEventListener("click", () => setSelectedWordCategory("due"));
@@ -1806,11 +1807,101 @@ function renderExample(word) {
     `;
   }
   return `
-    <div class="example-box">
-      <p><span>例</span>${escapeHtml(example.japanese)}</p>
-      <p><span>EN</span>${escapeHtml(example.english)}</p>
-    </div>
+    ${renderVocabularyExample(word, example)}
   `;
+}
+
+function renderVocabularyExample(word, example) {
+  const highlighted = renderHighlightedExampleSentence(example.japanese, word);
+  const furiganaButton = highlighted.hasFurigana
+    ? `<button class="ghost-button compact-button furigana-toggle" type="button" aria-pressed="true">Hide furigana</button>`
+    : "";
+  const targetNote = highlighted.hasTarget
+    ? ""
+    : `<p class="example-target-note"><span>Target</span>${formatWord(word)}</p>`;
+  return `
+    <article class="sentence-card" data-furigana-visible="true">
+      <div class="sentence-card-header">
+        <span>Example sentence</span>
+        ${furiganaButton}
+      </div>
+      <p class="example-japanese">${highlighted.html}</p>
+      <p class="example-english">${escapeHtml(example.english)}</p>
+      ${targetNote}
+    </article>
+  `;
+}
+
+function handleExampleRevealClick(event) {
+  const button = event.target.closest(".furigana-toggle");
+  if (!button) {
+    return;
+  }
+
+  const card = button.closest(".sentence-card");
+  if (!card) {
+    return;
+  }
+  const nextVisible = card.dataset.furiganaVisible !== "true";
+  card.dataset.furiganaVisible = String(nextVisible);
+  button.textContent = nextVisible ? "Hide furigana" : "Show furigana";
+  button.setAttribute("aria-pressed", String(nextVisible));
+}
+
+function renderHighlightedExampleSentence(sentence, word) {
+  const targets = getExampleTargetForms(word);
+  const pieces = [];
+  let index = 0;
+  let hasTarget = false;
+  let hasFurigana = false;
+
+  while (index < sentence.length) {
+    const target = targets.find((candidate) => sentence.startsWith(candidate.word, index));
+    if (target) {
+      pieces.push(renderExampleTarget(target));
+      hasTarget = true;
+      hasFurigana = hasFurigana || Boolean(target.reading && target.reading !== target.word);
+      index += target.word.length;
+      continue;
+    }
+    pieces.push(escapeHtml(sentence[index]));
+    index += 1;
+  }
+
+  return {
+    html: pieces.join(""),
+    hasTarget,
+    hasFurigana,
+  };
+}
+
+function renderExampleTarget(target) {
+  const safeWord = escapeHtml(target.word);
+  if (!target.reading || target.reading === target.word) {
+    return `<mark class="example-target">${safeWord}</mark>`;
+  }
+  return `<mark class="example-target"><ruby>${safeWord}<rt>${escapeHtml(target.reading)}</rt></ruby></mark>`;
+}
+
+function getExampleTargetForms(word) {
+  const wordForms = splitJapaneseAnswerAlternatives(word.word);
+  const readingForms = splitJapaneseAnswerAlternatives(word.reading);
+  const targets = new Map();
+
+  wordForms.forEach((form, index) => {
+    const reading = readingForms[index] || readingForms[0] || "";
+    if (form) {
+      targets.set(form, { word: form, reading });
+    }
+  });
+
+  readingForms.forEach((form) => {
+    if (form && !targets.has(form)) {
+      targets.set(form, { word: form, reading: "" });
+    }
+  });
+
+  return Array.from(targets.values()).sort((a, b) => b.word.length - a.word.length);
 }
 
 function renderGrammarDetails(word, density = "full") {

@@ -182,6 +182,99 @@ h2 {
   margin-top: 16px;
 }
 
+.focus-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
+  gap: 22px;
+  align-items: stretch;
+  margin-top: 16px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(233, 243, 241, 0.68), rgba(255, 253, 248, 0.94) 46%, rgba(246, 238, 230, 0.72)),
+    var(--surface-warm);
+}
+
+.focus-panel::after {
+  position: absolute;
+  right: 24px;
+  bottom: -20px;
+  color: rgba(178, 74, 54, 0.08);
+  content: "今日";
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: clamp(4rem, 7vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.focus-copy,
+.focus-stat-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.focus-copy {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 10px;
+}
+
+.focus-copy h2 {
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+}
+
+.focus-copy p:not(.eyebrow) {
+  max-width: 36rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.focus-copy .primary-button {
+  margin-top: 6px;
+}
+
+.focus-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.focus-stat-grid article {
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  min-height: 92px;
+  border: 1px solid rgba(201, 194, 179, 0.88);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: inset 0 2px 0 rgba(31, 111, 104, 0.28);
+}
+
+.focus-stat-grid article:nth-child(2) {
+  box-shadow: inset 0 2px 0 rgba(178, 74, 54, 0.32);
+}
+
+.focus-stat-grid article:nth-child(3) {
+  box-shadow: inset 0 2px 0 rgba(178, 131, 25, 0.34);
+}
+
+.focus-stat-grid article:nth-child(4) {
+  box-shadow: inset 0 2px 0 rgba(49, 92, 135, 0.34);
+}
+
+.focus-stat-grid strong {
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.focus-stat-grid span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 680;
+}
+
 .onboarding-panel,
 .stats-panel {
   margin-top: 16px;
@@ -1256,6 +1349,10 @@ rt {
     display: none;
   }
 
+  .focus-panel {
+    grid-template-columns: 1fr;
+  }
+
   .mode-grid {
     grid-template-columns: 1fr;
   }
@@ -1352,6 +1449,14 @@ rt {
     padding: 20px;
   }
 
+  .focus-panel {
+    padding: 20px;
+  }
+
+  .focus-panel::after {
+    display: none;
+  }
+
   .mode-panel::after {
     display: none;
   }
@@ -1369,6 +1474,10 @@ rt {
   .brand-subtitle,
   .mode-heading p {
     max-width: 20rem;
+  }
+
+  .focus-stat-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
   .mode-copy strong,
@@ -1397,6 +1506,10 @@ rt {
 
 @media (max-width: 520px) {
   .topbar-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .focus-stat-grid {
     grid-template-columns: 1fr;
   }
 }

@@ -29,7 +29,7 @@ const studyModes = {
   },
   vocabularyReverse: {
     id: "vocabularyReverse",
-    label: "EN -> Japanese",
+    label: "EN to Japanese",
     sourceKind: "vocabulary",
     itemLabel: "word",
     pluralLabel: "words",
@@ -188,6 +188,14 @@ const els = {
   importProgressFile: document.querySelector("#importProgressFile"),
   resetProgress: document.querySelector("#resetProgress"),
   chooseAgain: document.querySelector("#chooseAgain"),
+  focusPanel: document.querySelector("#focusPanel"),
+  focusTitle: document.querySelector("#focusTitle"),
+  focusDescription: document.querySelector("#focusDescription"),
+  focusAction: document.querySelector("#focusAction"),
+  focusLearnedCount: document.querySelector("#focusLearnedCount"),
+  focusDueCount: document.querySelector("#focusDueCount"),
+  focusRememberCount: document.querySelector("#focusRememberCount"),
+  focusCompletionCount: document.querySelector("#focusCompletionCount"),
 };
 
 init();
@@ -254,6 +262,12 @@ function bindEvents() {
   els.nextWord.addEventListener("click", showNextWord);
   els.backToMenu.addEventListener("click", showSetup);
   els.chooseAgain.addEventListener("click", showSetup);
+  els.focusAction.addEventListener("click", () => {
+    const modeId = els.focusAction.dataset.modeId;
+    if (modeId) {
+      selectStudyMode(modeId);
+    }
+  });
   els.resetProgress.addEventListener("click", resetProgress);
   els.exportProgress.addEventListener("click", exportProgress);
   els.importProgress.addEventListener("click", () => els.importProgressFile.click());
@@ -567,10 +581,8 @@ function renderProgressStats() {
 
 function renderModeCardProgress() {
   Object.values(studyModes).forEach((mode) => {
-    const words = mode.decks.flatMap((deck) => state.allDecks[mode.id].get(deck.id) || []);
-    const learned = words.filter((word) => isLearned(word)).length;
-    const total = words.length;
-    const due = Math.max(total - learned, 0);
+    const summary = getModeSummary(mode);
+    const { learned, total, due } = summary;
     const percent = total ? Math.round((learned / total) * 100) : 0;
     const progressEl = document.querySelector(`[data-mode-progress="${mode.id}"]`);
     const meterEl = document.querySelector(`[data-mode-meter="${mode.id}"]`);
@@ -582,6 +594,61 @@ function renderModeCardProgress() {
       meterEl.style.width = `${percent}%`;
     }
   });
+  renderFocusPanel();
+}
+
+function getModeSummary(mode) {
+  const words = mode.decks.flatMap((deck) => state.allDecks[mode.id].get(deck.id) || []);
+  const learned = words.filter((word) => isLearned(word)).length;
+  const remembered = words.filter((word) => isToRemember(word)).length;
+  const total = words.length;
+  const due = Math.max(total - learned, 0);
+  const percent = total ? Math.round((learned / total) * 100) : 0;
+  return { mode, words, learned, remembered, total, due, percent };
+}
+
+function renderFocusPanel() {
+  const summaries = Object.values(studyModes).map(getModeSummary);
+  const total = summaries.reduce((sum, summary) => sum + summary.total, 0);
+  const learned = summaries.reduce((sum, summary) => sum + summary.learned, 0);
+  const due = summaries.reduce((sum, summary) => sum + summary.due, 0);
+  const remembered = summaries.reduce((sum, summary) => sum + summary.remembered, 0);
+  const completion = total ? Math.round((learned / total) * 100) : 0;
+  const readySummaries = summaries.filter((summary) => summary.total > 0);
+  const recommended = readySummaries
+    .filter((summary) => summary.due > 0)
+    .sort((a, b) => a.percent - b.percent || b.due - a.due || a.mode.label.localeCompare(b.mode.label))[0];
+
+  els.focusLearnedCount.textContent = learned;
+  els.focusDueCount.textContent = due;
+  els.focusRememberCount.textContent = remembered;
+  els.focusCompletionCount.textContent = `${completion}%`;
+
+  if (!total) {
+    els.focusTitle.textContent = "Loading your study map";
+    els.focusDescription.textContent = "Deck progress will appear here once the study paths are ready.";
+    els.focusAction.textContent = "Open recommended path";
+    els.focusAction.disabled = true;
+    delete els.focusAction.dataset.modeId;
+    return;
+  }
+
+  if (!recommended) {
+    els.focusTitle.textContent = "Everything is learned";
+    els.focusDescription.textContent = remembered
+      ? `${remembered} item${remembered === 1 ? "" : "s"} remain in to-remember review.`
+      : "All loaded study paths are complete. You can reset progress or review saved to-remember items.";
+    els.focusAction.textContent = "Open vocabulary";
+    els.focusAction.dataset.modeId = "vocabulary";
+    els.focusAction.disabled = false;
+    return;
+  }
+
+  els.focusTitle.textContent = `Continue with ${recommended.mode.label}`;
+  els.focusDescription.textContent = `${recommended.due} ${recommended.mode.pluralLabel} still due. This path is ${recommended.percent}% learned.`;
+  els.focusAction.textContent = `Open ${recommended.mode.label}`;
+  els.focusAction.dataset.modeId = recommended.mode.id;
+  els.focusAction.disabled = false;
 }
 
 function recordReviewEvent({ word, isCorrect, learnedAfter, manual }) {
@@ -1732,6 +1799,7 @@ function showModeMenu() {
   state.reviewMode = "normal";
   state.currentWord = null;
   els.modePanel.classList.remove("hidden");
+  els.focusPanel.classList.remove("hidden");
   renderOnboarding();
   els.statsPanel.classList.remove("hidden");
   els.setupPanel.classList.add("hidden");
@@ -1750,6 +1818,7 @@ function showSetup() {
   applyModeText();
   state.reviewMode = "normal";
   els.modePanel.classList.add("hidden");
+  els.focusPanel.classList.add("hidden");
   els.onboardingPanel.classList.add("hidden");
   els.statsPanel.classList.add("hidden");
   els.setupPanel.classList.remove("hidden");
@@ -1767,6 +1836,7 @@ function showComplete() {
   const mode = getModeConfig();
   els.quizPanel.classList.add("hidden");
   els.modePanel.classList.add("hidden");
+  els.focusPanel.classList.add("hidden");
   els.onboardingPanel.classList.add("hidden");
   els.statsPanel.classList.add("hidden");
   els.setupPanel.classList.add("hidden");

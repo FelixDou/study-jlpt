@@ -609,6 +609,79 @@ h2 {
   gap: 12px;
 }
 
+.study-options {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.study-options fieldset,
+.session-goal {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(255, 253, 248, 0.82);
+}
+
+.study-options legend,
+.session-goal span {
+  color: var(--accent-dark);
+  font-size: 0.82rem;
+  font-weight: 820;
+}
+
+.study-options fieldset {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.study-options legend {
+  grid-column: 1 / -1;
+}
+
+.study-options label {
+  display: grid;
+  cursor: pointer;
+}
+
+.study-options input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.study-options input[type="radio"] + span {
+  display: grid;
+  place-items: center;
+  min-height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--muted);
+  font-weight: 760;
+}
+
+.study-options input[type="radio"]:checked + span {
+  border-color: var(--accent);
+  background: var(--soft);
+  color: var(--accent-dark);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.session-goal select {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 0 12px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 720;
+}
+
 .deck-option {
   position: relative;
 }
@@ -776,6 +849,106 @@ h2 {
   border-radius: 8px;
   background: rgba(255, 253, 248, 0.76);
   overflow: hidden;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.roadmap-card {
+  display: grid;
+  gap: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(251, 247, 238, 0.82)),
+    var(--surface-warm);
+}
+
+.roadmap-level {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.roadmap-level strong {
+  font-size: 1.45rem;
+}
+
+.roadmap-level span,
+.roadmap-row span,
+.mistake-item small {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 680;
+}
+
+.roadmap-rows {
+  display: grid;
+  gap: 9px;
+}
+
+.roadmap-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 5px 10px;
+}
+
+.roadmap-row strong {
+  font-size: 0.9rem;
+}
+
+.roadmap-meter {
+  grid-column: 1 / -1;
+  display: block;
+  height: 7px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 194, 179, 0.86);
+  border-radius: 999px;
+  background: rgba(239, 232, 218, 0.92);
+}
+
+.roadmap-meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--accent-indigo));
+}
+
+.mistake-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.mistake-item {
+  display: grid;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(255, 253, 248, 0.84);
+}
+
+.mistake-item div {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.mistake-item strong {
+  font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: 1.05rem;
+}
+
+.mistake-item p {
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .list-heading {
@@ -1434,7 +1607,12 @@ rt {
   .mode-grid,
   .word-lists,
   .onboarding-grid,
-  .progress-stat-grid {
+  .progress-stat-grid,
+  .study-options {
+    grid-template-columns: 1fr;
+  }
+
+  .study-options fieldset {
     grid-template-columns: 1fr;
   }
 

@@ -109,6 +109,10 @@ const state = {
   lastSubmittedAnswer: "",
   recentWordIds: [],
   failedWordIds: [],
+  queueMode: "daily",
+  sessionGoal: "open",
+  sessionProgress: null,
+  completionMessage: "",
   reviewMode: "normal",
   examples: {},
   progress: {},
@@ -167,6 +171,7 @@ const els = {
   quizTitle: document.querySelector("#quizTitle"),
   remainingCount: document.querySelector("#remainingCount"),
   learnedCount: document.querySelector("#learnedCount"),
+  sessionProgressCount: document.querySelector("#sessionProgressCount"),
   backToMenu: document.querySelector("#backToMenu"),
   wordDisplay: document.querySelector("#wordDisplay"),
   answerForm: document.querySelector("#answerForm"),
@@ -188,6 +193,12 @@ const els = {
   importProgressFile: document.querySelector("#importProgressFile"),
   resetProgress: document.querySelector("#resetProgress"),
   chooseAgain: document.querySelector("#chooseAgain"),
+  sessionGoal: document.querySelector("#sessionGoal"),
+  roadmapPanel: document.querySelector("#roadmapPanel"),
+  roadmapGrid: document.querySelector("#roadmapGrid"),
+  mistakePanel: document.querySelector("#mistakePanel"),
+  mistakeSummary: document.querySelector("#mistakeSummary"),
+  mistakeNotebook: document.querySelector("#mistakeNotebook"),
   focusPanel: document.querySelector("#focusPanel"),
   focusTitle: document.querySelector("#focusTitle"),
   focusDescription: document.querySelector("#focusDescription"),
@@ -250,6 +261,16 @@ function bindEvents() {
     selectStudyMode(button.dataset.modeId);
   });
   els.startQuiz.addEventListener("click", startQuiz);
+  document.querySelectorAll('input[name="queueMode"]').forEach((input) => {
+    input.addEventListener("change", () => {
+      state.queueMode = getSelectedQueueMode();
+      updateSetupMessage();
+    });
+  });
+  els.sessionGoal.addEventListener("change", () => {
+    state.sessionGoal = els.sessionGoal.value;
+    updateSetupMessage();
+  });
   els.startRememberQuiz.addEventListener("click", startRememberQuiz);
   els.answerForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -577,6 +598,8 @@ function renderProgressStats() {
         .join("")
     : `<p class="empty-list">No hard items yet.</p>`;
   renderModeCardProgress();
+  renderRoadmap();
+  renderMistakeNotebook(events);
 }
 
 function renderModeCardProgress() {
@@ -651,6 +674,67 @@ function renderFocusPanel() {
   els.focusAction.disabled = false;
 }
 
+function renderRoadmap() {
+  els.roadmapGrid.innerHTML = deckLevels
+    .slice()
+    .reverse()
+    .map((deck) => {
+      const rows = Object.values(studyModes)
+        .map((mode) => {
+          const words = state.allDecks[mode.id].get(deck.id) || [];
+          const learned = words.filter((word) => isLearned(word)).length;
+          const percent = words.length ? Math.round((learned / words.length) * 100) : 0;
+          return `
+            <div class="roadmap-row">
+              <span>${escapeHtml(mode.label)}</span>
+              <strong>${learned}/${words.length || 0}</strong>
+              <span class="roadmap-meter" aria-hidden="true"><span style="width: ${percent}%"></span></span>
+            </div>
+          `;
+        })
+        .join("");
+      return `
+        <article class="roadmap-card">
+          <div class="roadmap-level">
+            <strong>${deck.label}</strong>
+            <span>JLPT level</span>
+          </div>
+          <div class="roadmap-rows">${rows}</div>
+        </article>
+      `;
+    })
+    .join("");
+}
+
+function renderMistakeNotebook(events) {
+  const hardestItems = getHardestItems(events, 8);
+  els.mistakeSummary.textContent = hardestItems.length
+    ? `${hardestItems.length} recurring item${hardestItems.length === 1 ? "" : "s"} found from your review history.`
+    : "Your most missed items will appear here after review sessions.";
+  els.mistakeNotebook.innerHTML = hardestItems.length
+    ? hardestItems
+        .map(({ word, wrong, attempts }) => {
+          const display = getDisplayParts(word);
+          const deck = word.deckId ? word.deckId.toUpperCase() : "";
+          const reading =
+            display.wordText === display.readingText ? "" : `<span class="list-reading">${escapeHtml(display.readingText)}</span>`;
+          return `
+            <article class="mistake-item">
+              <div>
+                <span class="remember-deck">${escapeHtml(getModeLabelForWord(word))}</span>
+                ${deck ? `<span class="remember-deck">${escapeHtml(deck)}</span>` : ""}
+                <strong>${escapeHtml(display.wordText)}</strong>
+                ${reading}
+              </div>
+              <p>${escapeHtml(word.meaning)}</p>
+              <small>${wrong}/${attempts} missed</small>
+            </article>
+          `;
+        })
+        .join("")
+    : `<p class="empty-list">No mistakes recorded yet.</p>`;
+}
+
 function recordReviewEvent({ word, isCorrect, learnedAfter, manual }) {
   if (!word) {
     return;
@@ -694,7 +778,7 @@ function getReviewStreak(events) {
   return streak;
 }
 
-function getHardestItems(events) {
+function getHardestItems(events, limit = 3) {
   const byItem = new Map();
   events.forEach((event) => {
     if (!event.itemId) {
@@ -718,7 +802,7 @@ function getHardestItems(events) {
       }
       return b.wrong - a.wrong || b.attempts - a.attempts;
     })
-    .slice(0, 3);
+    .slice(0, limit);
 }
 
 function getLocalDateKey(date) {
@@ -887,6 +971,9 @@ function startQuiz() {
     return;
   }
   state.reviewMode = "normal";
+  state.queueMode = getSelectedQueueMode();
+  state.sessionGoal = els.sessionGoal.value;
+  state.sessionProgress = createSessionProgress(state.sessionGoal);
   state.recentWordIds = [];
   state.failedWordIds = [];
   state.selectedIds = Array.from(els.deckChoices.querySelectorAll("input:checked")).map((input) => input.value);
@@ -902,11 +989,14 @@ function startQuiz() {
     return;
   }
 
-  els.deckLabel.textContent = state.selectedIds.map((id) => id.toUpperCase()).join(" + ");
+  els.deckLabel.textContent = `${getQueueModeLabel(state.queueMode)} · ${state.selectedIds.map((id) => id.toUpperCase()).join(" + ")}`;
   els.quizTitle.textContent = mode.quizTitle;
   els.modePanel.classList.add("hidden");
+  els.focusPanel.classList.add("hidden");
   els.onboardingPanel.classList.add("hidden");
   els.statsPanel.classList.add("hidden");
+  els.roadmapPanel.classList.add("hidden");
+  els.mistakePanel.classList.add("hidden");
   els.setupPanel.classList.add("hidden");
   els.rememberPanel.classList.add("hidden");
   els.overviewPanel.classList.add("hidden");
@@ -929,6 +1019,9 @@ function startRememberQuiz() {
   }
 
   state.reviewMode = "remember";
+  state.queueMode = "remember";
+  state.sessionGoal = "open";
+  state.sessionProgress = createSessionProgress("open");
   state.recentWordIds = [];
   state.failedWordIds = [];
   state.selectedIds = [];
@@ -936,8 +1029,11 @@ function startRememberQuiz() {
   els.deckLabel.textContent = "To remember";
   els.quizTitle.textContent = `Review this ${mode.itemLabel}`;
   els.modePanel.classList.add("hidden");
+  els.focusPanel.classList.add("hidden");
   els.onboardingPanel.classList.add("hidden");
   els.statsPanel.classList.add("hidden");
+  els.roadmapPanel.classList.add("hidden");
+  els.mistakePanel.classList.add("hidden");
   els.setupPanel.classList.add("hidden");
   els.rememberPanel.classList.add("hidden");
   els.overviewPanel.classList.add("hidden");
@@ -952,12 +1048,166 @@ function getSelectedWords() {
     return getAllWords().filter((word) => isToRemember(word));
   }
 
-  return state.selectedIds
-    .flatMap((deckId) => getActiveDeckMap().get(deckId) || [])
-    .filter((word) => getWordProgress(word).correctCount < 2);
+  const selectedWords = state.selectedIds.flatMap((deckId) => getActiveDeckMap().get(deckId) || []);
+  const dueWords = selectedWords.filter((word) => !isLearned(word));
+  if (state.queueMode === "random") {
+    return dueWords;
+  }
+
+  if (state.queueMode === "weak") {
+    const weakWords = sortWeakItems(selectedWords).filter((word) => getMistakeStatsForWord(word).wrong > 0);
+    return weakWords.length ? weakWords : dueWords;
+  }
+
+  const weakDueWords = sortWeakItems(dueWords).slice(0, 30);
+  const rememberWords = selectedWords.filter((word) => isToRemember(word)).slice(0, 30);
+  const retentionWords = selectedWords
+    .filter((word) => isLearned(word) && !isToRemember(word))
+    .sort((a, b) => getLastReviewedTime(a) - getLastReviewedTime(b))
+    .slice(0, Math.min(20, Math.ceil(selectedWords.length * 0.08)));
+  return uniqueWords([...weakDueWords, ...dueWords, ...rememberWords, ...retentionWords]);
+}
+
+function getSelectedQueueMode() {
+  return document.querySelector('input[name="queueMode"]:checked')?.value || "daily";
+}
+
+function getQueueModeLabel(queueMode) {
+  return {
+    daily: "Today",
+    weak: "Weak items",
+    random: "Random due",
+    remember: "To remember",
+  }[queueMode] || "Review";
+}
+
+function createSessionProgress(goal) {
+  return {
+    goal,
+    reviewed: 0,
+    learned: 0,
+    startedAt: Date.now(),
+  };
+}
+
+function registerSessionProgress({ learnedAfter = false } = {}) {
+  if (!state.sessionProgress) {
+    state.sessionProgress = createSessionProgress(state.sessionGoal);
+  }
+  state.sessionProgress.reviewed += 1;
+  if (learnedAfter) {
+    registerSessionLearned();
+  }
+}
+
+function registerSessionLearned() {
+  if (!state.sessionProgress) {
+    state.sessionProgress = createSessionProgress(state.sessionGoal);
+  }
+  state.sessionProgress.learned += 1;
+}
+
+function isSessionGoalReached() {
+  const progress = state.sessionProgress;
+  if (!progress || progress.goal === "open" || progress.reviewed === 0) {
+    return false;
+  }
+  if (progress.goal === "20") {
+    return progress.reviewed >= 20;
+  }
+  if (progress.goal === "10m") {
+    return Date.now() - progress.startedAt >= 10 * 60 * 1000;
+  }
+  if (progress.goal === "5learned") {
+    return progress.learned >= 5;
+  }
+  return false;
+}
+
+function getSessionGoalCompletionMessage() {
+  const progress = state.sessionProgress || createSessionProgress(state.sessionGoal);
+  if (progress.goal === "20") {
+    return `Goal reached: ${progress.reviewed} items reviewed.`;
+  }
+  if (progress.goal === "10m") {
+    return `Goal reached: 10 minutes of review completed with ${progress.reviewed} items reviewed.`;
+  }
+  if (progress.goal === "5learned") {
+    return `Goal reached: ${progress.learned} items learned in this session.`;
+  }
+  return "Session goal reached.";
+}
+
+function updateSetupMessage() {
+  const mode = getModeConfig();
+  if (!mode || els.setupPanel.classList.contains("hidden")) {
+    return;
+  }
+  const queue = getQueueModeLabel(getSelectedQueueMode()).toLowerCase();
+  const goal = getSessionGoalLabel(els.sessionGoal.value).toLowerCase();
+  els.setupMessage.textContent = `Choose decks for a ${queue} ${mode.itemLabel} session · ${goal}.`;
+}
+
+function getSessionGoalLabel(goal = state.sessionGoal) {
+  return {
+    open: "Open review",
+    "20": "20 items",
+    "10m": "10 minutes",
+    "5learned": "5 learned",
+  }[goal] || "Open review";
+}
+
+function uniqueWords(words) {
+  const seen = new Set();
+  return words.filter((word) => {
+    if (!word || seen.has(word.id)) {
+      return false;
+    }
+    seen.add(word.id);
+    return true;
+  });
+}
+
+function getMistakeStatsForWord(word) {
+  const events = Array.isArray(getStatsProgress().events) ? getStatsProgress().events : [];
+  return events.reduce(
+    (stats, event) => {
+      if (event.itemId !== word.id) {
+        return stats;
+      }
+      stats.attempts += 1;
+      if (!event.correct) {
+        stats.wrong += 1;
+      }
+      return stats;
+    },
+    { attempts: 0, wrong: 0 }
+  );
+}
+
+function sortWeakItems(words) {
+  return [...words].sort((a, b) => {
+    const aStats = getMistakeStatsForWord(a);
+    const bStats = getMistakeStatsForWord(b);
+    const aRate = aStats.attempts ? aStats.wrong / aStats.attempts : 0;
+    const bRate = bStats.attempts ? bStats.wrong / bStats.attempts : 0;
+    return bRate - aRate || bStats.wrong - aStats.wrong || bStats.attempts - aStats.attempts;
+  });
+}
+
+function getLastReviewedTime(word) {
+  const progress = getWordProgress(word);
+  const timestamp = progress.lastAnsweredAt || progress.lastRememberReviewedAt || progress.lastManualStatusChangeAt;
+  return timestamp ? new Date(timestamp).getTime() || 0 : 0;
 }
 
 function showNextWord() {
+  if (isSessionGoalReached()) {
+    state.completionMessage = getSessionGoalCompletionMessage();
+    showComplete();
+    return;
+  }
+
   state.activeWords = getSelectedWords();
   if (state.activeWords.length === 0) {
     if (state.reviewMode === "remember") {
@@ -1007,6 +1257,7 @@ function submitAnswer(rawAnswer) {
   } else if (isCorrect) {
     wordProgress.correctCount = Math.min(2, wordProgress.correctCount + 1);
   }
+  const learnedAfter = state.reviewMode !== "remember" && correctBefore < 2 && wordProgress.correctCount >= 2;
   updateFailureCooldown(state.currentWord, isCorrect);
   if (state.reviewMode !== "remember") {
     wordProgress.attempts += 1;
@@ -1015,9 +1266,10 @@ function submitAnswer(rawAnswer) {
   recordReviewEvent({
     word: state.currentWord,
     isCorrect,
-    learnedAfter: state.reviewMode !== "remember" && correctBefore < 2 && wordProgress.correctCount >= 2,
+    learnedAfter,
     manual: false,
   });
+  registerSessionProgress({ learnedAfter });
   if (state.reviewMode === "remember") {
     state.progress[state.currentWord.id] = wordProgress;
     saveProgress();
@@ -1071,6 +1323,7 @@ function markCurrentWordLearned() {
     learnedAfter: correctBefore < 2,
     manual: true,
   });
+  registerSessionProgress({ learnedAfter: correctBefore < 2 });
   state.progress[state.currentWord.id] = wordProgress;
   saveProgress();
 
@@ -1126,10 +1379,14 @@ function acceptLastAnswer() {
   }
 
   const wordProgress = getWordProgress(state.currentWord);
+  const correctBefore = wordProgress.correctCount || 0;
   const acceptedAnswers = new Set(wordProgress.acceptedAnswers || []);
   acceptedAnswers.add(normalizedAnswer);
   wordProgress.acceptedAnswers = Array.from(acceptedAnswers).sort();
   wordProgress.correctCount = Math.min(2, (wordProgress.correctCount || 0) + 1);
+  if (correctBefore < 2 && wordProgress.correctCount >= 2) {
+    registerSessionLearned();
+  }
   wordProgress.lastAcceptedAnswerAt = new Date().toISOString();
   state.progress[state.currentWord.id] = wordProgress;
   updateFailureCooldown(state.currentWord, true);
@@ -1233,6 +1490,9 @@ function isAcceptedAnswer(answer, acceptedAnswers) {
   if (acceptedAnswers.includes(normalized)) {
     return true;
   }
+  if (acceptedAnswers.some((accepted) => isCloseEnglishAnswer(normalized, accepted))) {
+    return true;
+  }
 
   const answerTokens = normalized.split(" ").filter(Boolean);
   if (!answerTokens.length || (answerTokens.length === 1 && answerTokens[0].length < 3)) {
@@ -1250,8 +1510,47 @@ function isAcceptedAnswer(answer, acceptedAnswers) {
     if (answerCoreStems.length && answerCoreStems.every((stem) => acceptedCoreStems.has(stem))) {
       return true;
     }
+    if (isCloseTokenSet(answerStems, acceptedTokens.map(stemEnglishToken))) {
+      return true;
+    }
     return answerStems.every((stem) => acceptedStems.has(stem));
   });
+}
+
+function isCloseEnglishAnswer(answer, accepted) {
+  if (answer.length < 5 || accepted.length < 5) {
+    return false;
+  }
+  const distance = levenshteinDistance(answer, accepted);
+  const longest = Math.max(answer.length, accepted.length);
+  return distance <= 1 || (distance <= 2 && 1 - distance / longest >= 0.84);
+}
+
+function isCloseTokenSet(answerStems, acceptedStems) {
+  if (answerStems.length < 2 || acceptedStems.length < 2) {
+    return false;
+  }
+  const accepted = new Set(acceptedStems);
+  const matched = answerStems.filter((stem) => accepted.has(stem)).length;
+  return matched >= Math.max(2, Math.ceil(Math.min(answerStems.length, acceptedStems.length) * 0.8));
+}
+
+function levenshteinDistance(a, b) {
+  const previous = Array.from({ length: b.length + 1 }, (_, index) => index);
+  for (let i = 1; i <= a.length; i += 1) {
+    let diagonal = previous[0];
+    previous[0] = i;
+    for (let j = 1; j <= b.length; j += 1) {
+      const nextDiagonal = previous[j];
+      previous[j] = Math.min(
+        previous[j] + 1,
+        previous[j - 1] + 1,
+        diagonal + (a[i - 1] === b[j - 1] ? 0 : 1)
+      );
+      diagonal = nextDiagonal;
+    }
+  }
+  return previous[b.length];
 }
 
 function isOptionalAnswerToken(token) {
@@ -1706,7 +2005,24 @@ function pickRandomWord(words, previousWord) {
   if (candidates.length === 0) {
     candidates = words;
   }
+  if (state.reviewMode !== "remember" && (state.queueMode === "weak" || state.queueMode === "daily")) {
+    candidates = rankQueueCandidates(candidates).slice(0, Math.min(candidates.length, 40));
+  }
   return candidates[Math.floor(Math.random() * candidates.length)];
+}
+
+function rankQueueCandidates(words) {
+  return [...words].sort((a, b) => getQueuePriority(b) - getQueuePriority(a));
+}
+
+function getQueuePriority(word) {
+  const stats = getMistakeStatsForWord(word);
+  const rate = stats.attempts ? stats.wrong / stats.attempts : 0;
+  const ageHours = Math.min(168, Math.max(0, (Date.now() - getLastReviewedTime(word)) / 36e5 || 168));
+  if (state.queueMode === "weak") {
+    return rate * 10 + stats.wrong + ageHours / 168;
+  }
+  return (isLearned(word) ? 0 : 4) + (isToRemember(word) ? 3 : 0) + rate * 4 + Math.min(stats.wrong, 5) + ageHours / 168;
 }
 
 function rememberAskedWord(word, poolSize) {
@@ -1780,6 +2096,7 @@ function getWordStatusText(word, progress = getWordProgress(word)) {
 }
 
 function updateStats() {
+  els.sessionProgressCount.textContent = getSessionProgressText();
   if (state.reviewMode === "remember") {
     const rememberedWords = getAllWords().filter((word) => isToRemember(word));
     els.remainingCount.textContent = rememberedWords.length;
@@ -1794,6 +2111,21 @@ function updateStats() {
   els.learnedCount.textContent = learned;
 }
 
+function getSessionProgressText() {
+  const progress = state.sessionProgress || createSessionProgress(state.sessionGoal);
+  if (progress.goal === "20") {
+    return `${progress.reviewed}/20`;
+  }
+  if (progress.goal === "10m") {
+    const elapsedMinutes = Math.min(10, Math.floor((Date.now() - progress.startedAt) / 60000));
+    return `${elapsedMinutes}/10m`;
+  }
+  if (progress.goal === "5learned") {
+    return `${progress.learned}/5`;
+  }
+  return String(progress.reviewed || 0);
+}
+
 function showModeMenu() {
   state.studyMode = null;
   state.reviewMode = "normal";
@@ -1802,6 +2134,8 @@ function showModeMenu() {
   els.focusPanel.classList.remove("hidden");
   renderOnboarding();
   els.statsPanel.classList.remove("hidden");
+  els.roadmapPanel.classList.remove("hidden");
+  els.mistakePanel.classList.remove("hidden");
   els.setupPanel.classList.add("hidden");
   els.rememberPanel.classList.add("hidden");
   els.overviewPanel.classList.add("hidden");
@@ -1821,6 +2155,8 @@ function showSetup() {
   els.focusPanel.classList.add("hidden");
   els.onboardingPanel.classList.add("hidden");
   els.statsPanel.classList.add("hidden");
+  els.roadmapPanel.classList.add("hidden");
+  els.mistakePanel.classList.add("hidden");
   els.setupPanel.classList.remove("hidden");
   els.rememberPanel.classList.remove("hidden");
   els.overviewPanel.classList.remove("hidden");
@@ -1829,7 +2165,7 @@ function showSetup() {
   renderDeckChoices();
   renderRememberList();
   renderOverviewLists();
-  els.setupMessage.textContent = `Choose decks for a new ${getModeConfig().itemLabel} session.`;
+  updateSetupMessage();
 }
 
 function showComplete() {
@@ -1839,12 +2175,17 @@ function showComplete() {
   els.focusPanel.classList.add("hidden");
   els.onboardingPanel.classList.add("hidden");
   els.statsPanel.classList.add("hidden");
+  els.roadmapPanel.classList.add("hidden");
+  els.mistakePanel.classList.add("hidden");
   els.setupPanel.classList.add("hidden");
   els.rememberPanel.classList.add("hidden");
   els.overviewPanel.classList.add("hidden");
   els.completePanel.classList.remove("hidden");
-  document.querySelector("#completeTitle").textContent = "Session complete";
-  els.completePanel.querySelector("p").textContent = `Every ${mode ? mode.itemLabel : "item"} in the selected decks has reached two correct answers and is marked learned.`;
+  document.querySelector("#completeTitle").textContent = state.completionMessage ? "Session complete" : "Deck complete";
+  els.completePanel.querySelector("p").textContent =
+    state.completionMessage ||
+    `Every ${mode ? mode.itemLabel : "item"} in the selected decks has reached two correct answers and is marked learned.`;
+  state.completionMessage = "";
 }
 
 function resetProgress() {

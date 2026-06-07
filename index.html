@@ -169,6 +169,32 @@
           <h2 id="setupTitle">Choose decks</h2>
           <p>Select one or more JLPT levels for this session.</p>
         </div>
+        <div class="study-options">
+          <fieldset>
+            <legend>Review queue</legend>
+            <label>
+              <input type="radio" name="queueMode" value="daily" checked>
+              <span>Today</span>
+            </label>
+            <label>
+              <input type="radio" name="queueMode" value="weak">
+              <span>Weak items</span>
+            </label>
+            <label>
+              <input type="radio" name="queueMode" value="random">
+              <span>Random due</span>
+            </label>
+          </fieldset>
+          <label class="session-goal" for="sessionGoal">
+            <span>Session goal</span>
+            <select id="sessionGoal">
+              <option value="open">Open review</option>
+              <option value="20">20 items</option>
+              <option value="10m">10 minutes</option>
+              <option value="5learned">5 learned</option>
+            </select>
+          </label>
+        </div>
         <div id="deckChoices" class="deck-grid"></div>
         <div class="setup-actions">
           <button id="startQuiz" class="primary-button" type="button">Start review</button>
@@ -239,6 +265,7 @@
             <div class="stats" aria-label="Progress">
               <span><strong id="remainingCount">0</strong> due</span>
               <span><strong id="learnedCount">0</strong> learned</span>
+              <span><strong id="sessionProgressCount">0</strong> session</span>
             </div>
             <button id="backToMenu" class="ghost-button" type="button">Main menu</button>
           </div>
@@ -271,6 +298,23 @@
             <button id="nextWord" class="primary-button" type="button">Next word</button>
           </div>
         </div>
+      </section>
+
+      <section id="roadmapPanel" class="panel overview-panel" aria-labelledby="roadmapTitle">
+        <div class="section-heading">
+          <p class="eyebrow">JLPT roadmap</p>
+          <h2 id="roadmapTitle">Level progress</h2>
+        </div>
+        <div id="roadmapGrid" class="roadmap-grid"></div>
+      </section>
+
+      <section id="mistakePanel" class="panel overview-panel" aria-labelledby="mistakeTitle">
+        <div class="section-heading">
+          <p class="eyebrow">Mistake notebook</p>
+          <h2 id="mistakeTitle">Items to revisit</h2>
+          <p id="mistakeSummary">Your most missed items will appear here after review sessions.</p>
+        </div>
+        <div id="mistakeNotebook" class="mistake-list"></div>
       </section>
 
       <section id="completePanel" class="panel hidden" aria-labelledby="completeTitle">

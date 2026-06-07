@@ -12,6 +12,7 @@ https://felixdou.github.io/study-jlpt/
 - Reverse vocabulary: English meaning to Japanese word, full kana, or romaji
 - Kanji: kanji to English meaning, with readings and useful vocabulary
 - Grammar: grammar point to English meaning, with usage patterns and example sentences
+- Audio: listen to Japanese prompts and revealed Japanese answers when your browser has a Japanese voice available
 
 ## How Reviews Work
 

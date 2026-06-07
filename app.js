@@ -113,6 +113,7 @@ const state = {
   sessionGoal: "open",
   sessionProgress: null,
   completionMessage: "",
+  japaneseVoice: null,
   reviewMode: "normal",
   examples: {},
   progress: {},
@@ -184,6 +185,8 @@ const els = {
   feedback: document.querySelector("#feedback"),
   resultLabel: document.querySelector("#resultLabel"),
   answerReveal: document.querySelector("#answerReveal"),
+  playPromptAudio: document.querySelector("#playPromptAudio"),
+  playAnswerAudio: document.querySelector("#playAnswerAudio"),
   exampleReveal: document.querySelector("#exampleReveal"),
   progressNote: document.querySelector("#progressNote"),
   nextWord: document.querySelector("#nextWord"),
@@ -281,6 +284,8 @@ function bindEvents() {
   els.toggleRemember.addEventListener("click", () => toggleRememberWord(state.currentWord));
   els.acceptAnswer.addEventListener("click", acceptLastAnswer);
   els.nextWord.addEventListener("click", showNextWord);
+  els.playPromptAudio.addEventListener("click", () => speakCurrentJapanese("prompt"));
+  els.playAnswerAudio.addEventListener("click", () => speakCurrentJapanese("answer"));
   els.backToMenu.addEventListener("click", showSetup);
   els.chooseAgain.addEventListener("click", showSetup);
   els.focusAction.addEventListener("click", () => {
@@ -321,6 +326,7 @@ function bindEvents() {
       toggleRememberWord(word, false);
     }
   });
+  initializeSpeech();
 }
 
 function getModeConfig(modeId = state.studyMode) {
@@ -1202,6 +1208,7 @@ function getLastReviewedTime(word) {
 }
 
 function showNextWord() {
+  stopSpeech();
   if (isSessionGoalReached()) {
     state.completionMessage = getSessionGoalCompletionMessage();
     showComplete();
@@ -1236,6 +1243,7 @@ function showNextWord() {
   els.acceptAnswer.classList.add("hidden");
   els.acceptAnswer.disabled = false;
   els.toggleRemember.classList.add("hidden");
+  updateAudioControls(false);
   updateStats();
   els.answerInput.focus();
 }
@@ -1302,6 +1310,7 @@ function submitAnswer(rawAnswer) {
   renderProgressStats();
   updateRememberAction();
   updateAcceptAnswerAction(isCorrect);
+  updateAudioControls(true);
   els.nextWord.focus();
 }
 
@@ -1342,6 +1351,7 @@ function markCurrentWordLearned() {
   renderOverviewLists();
   renderProgressStats();
   updateRememberAction();
+  updateAudioControls(true);
   els.nextWord.focus();
 }
 
@@ -1432,6 +1442,142 @@ function toggleRememberWord(word, forceValue = null) {
       ? "Added to to-remember review. Normal learned progress is unchanged."
       : "Removed from to-remember review. Normal learned progress is unchanged.";
   }
+}
+
+function initializeSpeech() {
+  if (!isSpeechSupported()) {
+    return;
+  }
+
+  refreshJapaneseVoice();
+  if (typeof window.speechSynthesis.addEventListener === "function") {
+    window.speechSynthesis.addEventListener("voiceschanged", refreshJapaneseVoice);
+  } else {
+    window.speechSynthesis.onvoiceschanged = refreshJapaneseVoice;
+  }
+}
+
+function isSpeechSupported() {
+  return "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+}
+
+function refreshJapaneseVoice() {
+  if (!isSpeechSupported()) {
+    return;
+  }
+  const voices = window.speechSynthesis.getVoices();
+  state.japaneseVoice =
+    voices.find((voice) => voice.lang && voice.lang.toLowerCase() === "ja-jp") ||
+    voices.find((voice) => voice.lang && voice.lang.toLowerCase().startsWith("ja")) ||
+    null;
+}
+
+function updateAudioControls(answerVisible) {
+  const supported = isSpeechSupported();
+  const promptText = supported ? getJapaneseSpeechText(state.currentWord, "prompt") : "";
+  const answerText = supported && answerVisible ? getJapaneseSpeechText(state.currentWord, "answer") : "";
+
+  els.playPromptAudio.classList.toggle("hidden", !promptText);
+  els.playPromptAudio.disabled = !promptText;
+  els.playPromptAudio.setAttribute("aria-label", promptText ? `Listen to ${getModeConfig().itemLabel}` : "Audio unavailable");
+
+  els.playAnswerAudio.classList.toggle("hidden", !answerText);
+  els.playAnswerAudio.disabled = !answerText;
+  els.playAnswerAudio.setAttribute(
+    "aria-label",
+    answerText ? `Listen to the Japanese ${getModeConfig().itemLabel}` : "Audio unavailable"
+  );
+}
+
+function speakCurrentJapanese(target) {
+  const text = getJapaneseSpeechText(state.currentWord, target);
+  speakJapanese(text, target === "answer" ? els.playAnswerAudio : els.playPromptAudio);
+}
+
+function speakJapanese(text, button) {
+  if (!text || !isSpeechSupported()) {
+    return;
+  }
+
+  refreshJapaneseVoice();
+  stopSpeech();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "ja-JP";
+  utterance.rate = 0.82;
+  utterance.pitch = 1;
+  if (state.japaneseVoice) {
+    utterance.voice = state.japaneseVoice;
+  }
+
+  const originalText = button ? button.textContent : "";
+  if (button) {
+    button.textContent = "Playing";
+    button.disabled = true;
+  }
+  const restoreButton = () => {
+    window.clearTimeout(restoreTimer);
+    restoreTimer = null;
+    if (button) {
+      button.textContent = originalText;
+      button.disabled = false;
+    }
+  };
+  const restoreDelay = Math.min(12000, Math.max(2500, text.length * 180));
+  let restoreTimer = window.setTimeout(restoreButton, restoreDelay);
+  utterance.addEventListener("end", restoreButton);
+  utterance.addEventListener("error", restoreButton);
+  window.speechSynthesis.speak(utterance);
+}
+
+function stopSpeech() {
+  if (isSpeechSupported()) {
+    window.speechSynthesis.cancel();
+  }
+  els.playPromptAudio.textContent = "Listen";
+  els.playAnswerAudio.textContent = "Listen to Japanese";
+}
+
+function getJapaneseSpeechText(word, target) {
+  if (!word) {
+    return "";
+  }
+
+  const mode = getModeConfig();
+  if (target === "prompt" && mode.answerType === "japanese") {
+    return "";
+  }
+  if (word.kind === "kanji") {
+    return getKanjiSpeechText(word, target);
+  }
+  if (word.kind === "grammar") {
+    return cleanJapaneseSpeechText(word.word);
+  }
+  return cleanJapaneseSpeechText(word.word || word.reading);
+}
+
+function getKanjiSpeechText(word, target) {
+  if (target === "answer") {
+    const readings = [...(word.kunReadings || []), ...(word.onReadings || [])]
+      .map(cleanKanjiReadingForSpeech)
+      .filter(Boolean);
+    return readings.length ? readings.slice(0, 3).join("、") : cleanJapaneseSpeechText(word.word);
+  }
+  return cleanJapaneseSpeechText(word.word);
+}
+
+function cleanKanjiReadingForSpeech(value) {
+  return cleanJapaneseSpeechText(value)
+    .replace(/[.．]/g, "")
+    .replace(/-/g, "")
+    .trim();
+}
+
+function cleanJapaneseSpeechText(value) {
+  return String(value || "")
+    .replace(/[;；|｜/／]/g, "、")
+    .replace(/[~〜～]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function getAcceptedAnswers(word) {
@@ -2127,6 +2273,7 @@ function getSessionProgressText() {
 }
 
 function showModeMenu() {
+  stopSpeech();
   state.studyMode = null;
   state.reviewMode = "normal";
   state.currentWord = null;
@@ -2145,6 +2292,7 @@ function showModeMenu() {
 }
 
 function showSetup() {
+  stopSpeech();
   if (!state.studyMode) {
     showModeMenu();
     return;
@@ -2169,6 +2317,7 @@ function showSetup() {
 }
 
 function showComplete() {
+  stopSpeech();
   const mode = getModeConfig();
   els.quizPanel.classList.add("hidden");
   els.modePanel.classList.add("hidden");

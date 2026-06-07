@@ -562,6 +562,26 @@ function renderProgressStats() {
         })
         .join("")
     : `<p class="empty-list">No hard items yet.</p>`;
+  renderModeCardProgress();
+}
+
+function renderModeCardProgress() {
+  Object.values(studyModes).forEach((mode) => {
+    const words = mode.decks.flatMap((deck) => state.allDecks[mode.id].get(deck.id) || []);
+    const learned = words.filter((word) => isLearned(word)).length;
+    const total = words.length;
+    const due = Math.max(total - learned, 0);
+    const percent = total ? Math.round((learned / total) * 100) : 0;
+    const progressEl = document.querySelector(`[data-mode-progress="${mode.id}"]`);
+    const meterEl = document.querySelector(`[data-mode-meter="${mode.id}"]`);
+
+    if (progressEl) {
+      progressEl.textContent = total ? `${learned}/${total} learned · ${due} due` : "Loading decks";
+    }
+    if (meterEl) {
+      meterEl.style.width = `${percent}%`;
+    }
+  });
 }
 
 function recordReviewEvent({ word, isCorrect, learnedAfter, manual }) {

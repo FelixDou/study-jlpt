@@ -1229,6 +1229,7 @@ function showNextWord() {
 
   state.currentWord = pickRandomWord(state.activeWords, state.currentWord);
   rememberAskedWord(state.currentWord, state.activeWords.length);
+  els.quizPanel.classList.remove("answered");
   els.wordDisplay.innerHTML = formatPrompt(state.currentWord);
   els.wordDisplay.classList.toggle("grammar-display", state.currentWord.kind === "grammar");
   els.wordDisplay.classList.toggle("english-display", getModeConfig().promptType === "meaning");
@@ -1300,6 +1301,7 @@ function submitAnswer(rawAnswer) {
         : `${wordProgress.correctCount}/2 correct answers for this ${itemLabel}.`;
   }
   els.feedback.className = `feedback ${isCorrect ? "correct" : "incorrect"}`;
+  els.quizPanel.classList.add("answered");
   els.answerInput.disabled = true;
   els.submitAnswer.disabled = true;
   els.dontKnow.disabled = true;
@@ -1342,6 +1344,7 @@ function markCurrentWordLearned() {
   els.exampleReveal.innerHTML = renderExample(state.currentWord);
   els.progressNote.textContent = `This ${getModeConfig().itemLabel} has been moved to learned and will no longer appear.`;
   els.feedback.className = "feedback correct";
+  els.quizPanel.classList.add("answered");
   els.answerInput.disabled = true;
   els.submitAnswer.disabled = true;
   els.dontKnow.disabled = true;

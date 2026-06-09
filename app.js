@@ -89,27 +89,6 @@ const studyModes = {
     knowButton: "I know this grammar",
     reviewRememberButton: "Review to remember",
   },
-  grammarConnection: {
-    id: "grammarConnection",
-    label: "Grammar Connections",
-    sourceKind: "grammar",
-    itemLabel: "connection pattern",
-    pluralLabel: "connection patterns",
-    decks: deckLevels.map((deck) => ({ ...deck, file: `data/grammar-${deck.id}.json`, type: "json" })),
-    setupTitle: "Choose grammar connection decks",
-    setupDescription: "Select one or more JLPT levels for this connection-pattern session.",
-    overviewTitle: "Grammar connection lists",
-    overviewDescription: "Choose a deck to inspect learned and remaining connection patterns.",
-    overviewDeckLabel: "Grammar connection list deck",
-    quizTitle: "Give the connection pattern",
-    rememberTitle: "Grammar connections to remember",
-    rememberDescription: "Connection patterns you recognize but want to keep revisiting.",
-    answerLabel: "Connection pattern",
-    answerPlaceholder: "Example: Vて + ある",
-    knowButton: "I know this pattern",
-    reviewRememberButton: "Review to remember",
-    answerType: "connection",
-  },
 };
 
 const storageKey = "jlpt-review-progress-v1";
@@ -122,7 +101,6 @@ const state = {
     vocabularyReverse: new Map(),
     kanji: new Map(),
     grammar: new Map(),
-    grammarConnection: new Map(),
   },
   kanjiVocabulary: new Map(),
   selectedIds: [],
@@ -131,7 +109,7 @@ const state = {
   lastSubmittedAnswer: "",
   recentWordIds: [],
   failedWordIds: [],
-  queueMode: "daily",
+  queueMode: "random",
   sessionGoal: "open",
   sessionProgress: null,
   completionMessage: "",
@@ -148,6 +126,7 @@ const state = {
 const els = {
   appTitle: document.querySelector("#appTitle"),
   modePanel: document.querySelector("#modePanel"),
+  settingsPanel: document.querySelector("#settingsPanel"),
   onboardingPanel: document.querySelector("#onboardingPanel"),
   dismissOnboarding: document.querySelector("#dismissOnboarding"),
   statsPanel: document.querySelector("#statsPanel"),
@@ -887,8 +866,7 @@ async function loadDecks() {
             throw new Error(`${mode.label} ${deck.label} returned ${response.status}`);
           }
           if (deck.type === "json") {
-            const items = await response.json();
-            return [deck.id, items.map((item) => prepareJsonDeckItem(item, mode))];
+            return [deck.id, await response.json()];
           }
           const text = await response.text();
           const rows = parseCsv(text);
@@ -914,18 +892,6 @@ async function loadDecks() {
     })
   );
   buildKanjiVocabularyIndex();
-}
-
-function prepareJsonDeckItem(item, mode) {
-  if (mode.id === item.kind || mode.id === item.id.split(":")[0]) {
-    return item;
-  }
-  return {
-    ...item,
-    id: `${mode.id}:${item.id}`,
-    sourceId: item.sourceId || item.id,
-    kind: mode.sourceKind || item.kind || mode.id,
-  };
 }
 
 function buildKanjiVocabularyIndex() {
@@ -1034,6 +1000,7 @@ function startQuiz() {
   els.deckLabel.textContent = `${getQueueModeLabel(state.queueMode)} · ${state.selectedIds.map((id) => id.toUpperCase()).join(" + ")}`;
   els.quizTitle.textContent = mode.quizTitle;
   els.modePanel.classList.add("hidden");
+  els.settingsPanel.classList.add("hidden");
   els.focusPanel.classList.add("hidden");
   els.onboardingPanel.classList.add("hidden");
   els.statsPanel.classList.add("hidden");
@@ -1071,6 +1038,7 @@ function startRememberQuiz() {
   els.deckLabel.textContent = "To remember";
   els.quizTitle.textContent = `Review this ${mode.itemLabel}`;
   els.modePanel.classList.add("hidden");
+  els.settingsPanel.classList.add("hidden");
   els.focusPanel.classList.add("hidden");
   els.onboardingPanel.classList.add("hidden");
   els.statsPanel.classList.add("hidden");
@@ -1111,7 +1079,7 @@ function getSelectedWords() {
 }
 
 function getSelectedQueueMode() {
-  return document.querySelector('input[name="queueMode"]:checked')?.value || "daily";
+  return document.querySelector('input[name="queueMode"]:checked')?.value || "random";
 }
 
 function getQueueModeLabel(queueMode) {
@@ -1420,9 +1388,7 @@ function acceptLastAnswer() {
   }
 
   const normalizedAnswer =
-    getModeConfig().answerType === "connection"
-      ? normalizeConnectionAnswer(state.lastSubmittedAnswer)
-      : getModeConfig().answerType === "japanese"
+    getModeConfig().answerType === "japanese"
       ? normalizeJapaneseFreeAnswer(state.lastSubmittedAnswer)
       : normalizeAnswer(state.lastSubmittedAnswer);
   if (!normalizedAnswer) {
@@ -1622,9 +1588,6 @@ function cleanJapaneseSpeechText(value) {
 }
 
 function getAcceptedAnswers(word) {
-  if (getModeConfig().answerType === "connection") {
-    return getAcceptedConnectionAnswers(word);
-  }
   if (getModeConfig().answerType === "japanese") {
     return getAcceptedJapaneseAnswers(word);
   }
@@ -1641,50 +1604,9 @@ function getAcceptedAnswers(word) {
 
 function isCorrectAnswer(answer, word) {
   const accepted = getAcceptedAnswers(word);
-  if (getModeConfig().answerType === "connection") {
-    return isAcceptedConnectionAnswer(answer, accepted);
-  }
   return getModeConfig().answerType === "japanese"
     ? isAcceptedJapaneseAnswer(answer, accepted)
     : isAcceptedAnswer(answer, accepted);
-}
-
-function getAcceptedConnectionAnswers(word) {
-  const customAnswers = (getWordProgress(word).acceptedAnswers || [])
-    .map(normalizeConnectionAnswer)
-    .filter(Boolean);
-  const connection = word.connection || `Fixed expression / pattern: ${word.word}`;
-  const pieces = connection
-    .split(/[,;；、]| or | and |\n/i)
-    .map((part) => part.trim())
-    .filter(Boolean);
-  const withoutLabels = pieces.map((piece) =>
-    piece
-      .replace(/^(use|connection|pattern|fixed expression|standalone adverb|standalone expression)\s*[:：]\s*/i, "")
-      .trim()
-  );
-  return Array.from(
-    new Set([connection, ...pieces, ...withoutLabels, ...customAnswers].map(normalizeConnectionAnswer).filter(Boolean))
-  );
-}
-
-function isAcceptedConnectionAnswer(answer, acceptedAnswers) {
-  const normalized = normalizeConnectionAnswer(answer);
-  if (!normalized) {
-    return false;
-  }
-  return acceptedAnswers.some((accepted) => {
-    if (normalized === accepted) {
-      return true;
-    }
-    if (normalized.length >= 4 && accepted.includes(normalized)) {
-      return true;
-    }
-    if (accepted.length >= 4 && normalized.includes(accepted)) {
-      return true;
-    }
-    return levenshteinDistance(normalized, accepted) <= Math.max(1, Math.floor(accepted.length * 0.12));
-  });
 }
 
 function getAcceptedJapaneseAnswers(word) {
@@ -2115,28 +2037,6 @@ function normalizeRomajiAnswer(value) {
     .trim();
 }
 
-function normalizeConnectionAnswer(value) {
-  return String(value || "")
-    .normalize("NFKC")
-    .toLowerCase()
-    .replace(/[（(]\s*(ます形|て形|た形|辞書形|ない形|普通形|plain form|dictionary form|te form|ta form|nai form)\s*[）)]/gi, "$1")
-    .replace(/ます形/g, "masu")
-    .replace(/て形/g, "te")
-    .replace(/た形/g, "ta")
-    .replace(/ない形/g, "nai")
-    .replace(/辞書形/g, "dictionary")
-    .replace(/普通形/g, "plain")
-    .replace(/\bverb\b/g, "v")
-    .replace(/\bnoun\b/g, "n")
-    .replace(/\bna[-\s]?adj(?:ective)?\b/g, "naadj")
-    .replace(/\bi[-\s]?adj(?:ective)?\b/g, "iadj")
-    .replace(/\badverb\b/g, "adv")
-    .replace(/\bphrase\b/g, "phrase")
-    .replace(/[\u3040-\u30ff]+/g, (kana) => kanaToRomaji(kana))
-    .replace(/[\s+＋・･、。.,;；:：/／|｜\-〜～~()[\]{}"'’‘“”]+/g, "")
-    .trim();
-}
-
 function containsKana(value) {
   return /[\u3040-\u30ff]/.test(value);
 }
@@ -2286,14 +2186,6 @@ function formatWord(word) {
 }
 
 function formatPrompt(word) {
-  if (getModeConfig().answerType === "connection") {
-    return `
-      <span class="connection-prompt">
-        <strong>${escapeHtml(word.word)}</strong>
-        <small>${escapeHtml(word.meaning)}</small>
-      </span>
-    `;
-  }
   if (getModeConfig().promptType === "meaning") {
     return `<span class="english-prompt">${escapeHtml(word.meaning)}</span>`;
   }
@@ -2301,9 +2193,6 @@ function formatPrompt(word) {
 }
 
 function getAnswerRevealText(word) {
-  if (getModeConfig().answerType === "connection") {
-    return `Answer: ${word.connection || `Fixed expression / pattern: ${word.word}`}`;
-  }
   if (getModeConfig().answerType === "japanese") {
     const display = getDisplayParts(word);
     const reading = display.wordText === display.readingText ? "" : ` [${display.readingText}]`;
@@ -2486,6 +2375,7 @@ function showModeMenu() {
   state.reviewMode = "normal";
   state.currentWord = null;
   els.modePanel.classList.remove("hidden");
+  els.settingsPanel.classList.remove("hidden");
   els.focusPanel.classList.remove("hidden");
   renderOnboarding();
   els.statsPanel.classList.remove("hidden");
@@ -2508,6 +2398,7 @@ function showSetup() {
   applyModeText();
   state.reviewMode = "normal";
   els.modePanel.classList.add("hidden");
+  els.settingsPanel.classList.add("hidden");
   els.focusPanel.classList.add("hidden");
   els.onboardingPanel.classList.add("hidden");
   els.statsPanel.classList.add("hidden");
@@ -2529,6 +2420,7 @@ function showComplete() {
   const mode = getModeConfig();
   els.quizPanel.classList.add("hidden");
   els.modePanel.classList.add("hidden");
+  els.settingsPanel.classList.add("hidden");
   els.focusPanel.classList.add("hidden");
   els.onboardingPanel.classList.add("hidden");
   els.statsPanel.classList.add("hidden");

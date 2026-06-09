@@ -87,19 +87,40 @@
               </span>
             </span>
           </button>
-          <button class="mode-card mode-connection" type="button" data-mode-id="grammarConnection">
-            <span class="mode-mark" aria-hidden="true">接</span>
-            <span class="mode-copy">
-              <span class="mode-kicker">Connections</span>
-              <strong>Grammar Connections</strong>
-              <span>Grammar point prompt, connection pattern answer.</span>
-              <span class="mode-card-meta">Forms · particles · attachment rules</span>
-              <span class="mode-progress" data-mode-progress="grammarConnection">Loading decks</span>
-              <span class="mode-progress-bar" aria-hidden="true">
-                <span data-mode-meter="grammarConnection"></span>
-              </span>
-            </span>
-          </button>
+        </div>
+      </section>
+
+      <section id="settingsPanel" class="panel settings-panel" aria-labelledby="settingsTitle">
+        <div class="section-heading">
+          <p class="eyebrow">Review settings</p>
+          <h2 id="settingsTitle">Session setup</h2>
+          <p>These settings apply to the next review session you start.</p>
+        </div>
+        <div class="study-options">
+          <fieldset>
+            <legend>Review queue</legend>
+            <label>
+              <input type="radio" name="queueMode" value="daily">
+              <span>Today</span>
+            </label>
+            <label>
+              <input type="radio" name="queueMode" value="weak">
+              <span>Weak items</span>
+            </label>
+            <label>
+              <input type="radio" name="queueMode" value="random" checked>
+              <span>Random due</span>
+            </label>
+          </fieldset>
+          <label class="session-goal" for="sessionGoal">
+            <span>Session goal</span>
+            <select id="sessionGoal">
+              <option value="open">Open review</option>
+              <option value="20">20 items</option>
+              <option value="10m">10 minutes</option>
+              <option value="5learned">5 learned</option>
+            </select>
+          </label>
         </div>
       </section>
 
@@ -181,32 +202,6 @@
         <div class="section-heading">
           <h2 id="setupTitle">Choose decks</h2>
           <p>Select one or more JLPT levels for this session.</p>
-        </div>
-        <div class="study-options">
-          <fieldset>
-            <legend>Review queue</legend>
-            <label>
-              <input type="radio" name="queueMode" value="daily" checked>
-              <span>Today</span>
-            </label>
-            <label>
-              <input type="radio" name="queueMode" value="weak">
-              <span>Weak items</span>
-            </label>
-            <label>
-              <input type="radio" name="queueMode" value="random">
-              <span>Random due</span>
-            </label>
-          </fieldset>
-          <label class="session-goal" for="sessionGoal">
-            <span>Session goal</span>
-            <select id="sessionGoal">
-              <option value="open">Open review</option>
-              <option value="20">20 items</option>
-              <option value="10m">10 minutes</option>
-              <option value="5learned">5 learned</option>
-            </select>
-          </label>
         </div>
         <div id="deckChoices" class="deck-grid"></div>
         <div class="setup-actions">

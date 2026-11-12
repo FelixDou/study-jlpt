@@ -1883,7 +1883,7 @@ function renderExample(word) {
 }
 
 function renderVocabularyExample(word, example) {
-  const highlighted = renderHighlightedExampleSentence(example.japanese, word);
+  const highlighted = renderHighlightedExampleSentence(example.japanese, word, example.furigana);
   const furiganaButton = highlighted.hasFurigana
     ? `<button class="ghost-button compact-button furigana-toggle" type="button" aria-pressed="true">Hide furigana</button>`
     : "";
@@ -1919,25 +1919,39 @@ function handleExampleRevealClick(event) {
   button.setAttribute("aria-pressed", String(nextVisible));
 }
 
-function renderHighlightedExampleSentence(sentence, word) {
+function renderHighlightedExampleSentence(sentence, word, furigana) {
   const targets = getExampleTargetForms(word);
+  const rubyUnits = parseFuriganaUnits(sentence, furigana);
   const pieces = [];
   let index = 0;
+  let plainStart = 0;
   let hasTarget = false;
   let hasFurigana = false;
+
+  const flushPlain = (end) => {
+    if (end > plainStart) {
+      const rendered = renderRubyRange(sentence, rubyUnits, plainStart, end);
+      pieces.push(rendered.html);
+      hasFurigana = hasFurigana || rendered.hasRuby;
+    }
+  };
 
   while (index < sentence.length) {
     const target = targets.find((candidate) => sentence.startsWith(candidate.word, index));
     if (target) {
-      pieces.push(renderExampleTarget(target));
+      flushPlain(index);
+      const end = index + target.word.length;
+      const rendered = renderExampleTarget(target, renderRubyRange(sentence, rubyUnits, index, end));
+      pieces.push(rendered.html);
       hasTarget = true;
-      hasFurigana = hasFurigana || Boolean(target.reading && target.reading !== target.word);
-      index += target.word.length;
+      hasFurigana = hasFurigana || rendered.hasRuby;
+      index = end;
+      plainStart = end;
       continue;
     }
-    pieces.push(escapeHtml(sentence[index]));
     index += 1;
   }
+  flushPlain(sentence.length);
 
   return {
     html: pieces.join(""),
@@ -1946,12 +1960,56 @@ function renderHighlightedExampleSentence(sentence, word) {
   };
 }
 
-function renderExampleTarget(target) {
+function renderExampleTarget(target, fallback) {
   const safeWord = escapeHtml(target.word);
-  if (!target.reading || target.reading === target.word) {
-    return `<mark class="example-target">${safeWord}</mark>`;
+  if (target.reading && target.reading !== target.word) {
+    return {
+      html: `<mark class="example-target"><ruby>${safeWord}<rt>${escapeHtml(target.reading)}</rt></ruby></mark>`,
+      hasRuby: true,
+    };
   }
-  return `<mark class="example-target"><ruby>${safeWord}<rt>${escapeHtml(target.reading)}</rt></ruby></mark>`;
+  return { html: `<mark class="example-target">${fallback.html}</mark>`, hasRuby: fallback.hasRuby };
+}
+
+// Furigana data uses "{漢字|かんじ}" markers; returns ruby spans as offsets into the plain sentence.
+function parseFuriganaUnits(sentence, furigana) {
+  if (!furigana) {
+    return [];
+  }
+  const units = [];
+  let plain = "";
+  const pattern = /\{([^|{}]+)\|([^{}]+)\}|([^{]+|\{)/g;
+  let match;
+  while ((match = pattern.exec(furigana))) {
+    if (match[1]) {
+      units.push({ start: plain.length, end: plain.length + match[1].length, reading: match[2] });
+      plain += match[1];
+    } else {
+      plain += match[3];
+    }
+  }
+  return plain === sentence ? units : [];
+}
+
+function renderRubyRange(text, units, start, end) {
+  let html = "";
+  let index = start;
+  let hasRuby = false;
+  units.forEach((unit) => {
+    if (unit.start < index || unit.end > end) {
+      return;
+    }
+    html += escapeHtml(text.slice(index, unit.start));
+    html += `<ruby>${escapeHtml(text.slice(unit.start, unit.end))}<rt>${escapeHtml(unit.reading)}</rt></ruby>`;
+    index = unit.end;
+    hasRuby = true;
+  });
+  html += escapeHtml(text.slice(index, end));
+  return { html, hasRuby };
+}
+
+function renderFuriganaSentence(sentence, furigana) {
+  return renderRubyRange(sentence, parseFuriganaUnits(sentence, furigana), 0, sentence.length).html;
 }
 
 function getExampleTargetForms(word) {
@@ -2003,7 +2061,7 @@ function renderGrammarDetails(word, density = "full") {
                 .map(
                   (example) => `
                     <article class="grammar-example-item">
-                      <p class="jp-example">${escapeHtml(example.japanese)}</p>
+                      <p class="jp-example">${renderFuriganaSentence(example.japanese, example.furigana)}</p>
                       <p>${escapeHtml(example.english)}</p>
                       ${example.pronunciation ? `<small>${escapeHtml(example.pronunciation)}</small>` : ""}
                     </article>

@@ -833,3 +833,24 @@ body[data-view="quiz"] #quizPanel.answered .word-card {
     white-space: nowrap;
   }
 }
+
+/* Furigana above every kanji in example sentences. */
+.example-japanese,
+.grammar-example-item .jp-example {
+  line-height: 2;
+}
+
+.example-japanese rt,
+.grammar-example-item .jp-example rt {
+  font-size: 0.42em;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.example-japanese .example-target rt {
+  font-weight: 760;
+}
+
+.grammar-example-item .jp-example rt {
+  font-size: 0.6em;
+}

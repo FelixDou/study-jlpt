@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "study-jlpt",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["server.py"],
+      "port": 8001
+    },
+    {
+      "name": "study-jlpt-sandbox",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8002", "--bind", "localhost"],
+      "port": 8002
+    }
+  ]
+}

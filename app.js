@@ -103,6 +103,9 @@ const state = {
     grammar: new Map(),
   },
   kanjiVocabulary: new Map(),
+  itemIndex: new Map(),
+  mistakeStatsCache: null,
+  statsVersion: 0,
   selectedIds: [],
   activeWords: [],
   currentWord: null,
@@ -480,8 +483,9 @@ function renderOverviewLists() {
     .join("");
 
   const words = searchQuery ? getAllWords() : getActiveDeckMap().get(activeDeck.id) || [];
+  const japaneseQuery = getJapaneseSearchQuery(state.overviewSearch);
   const matchingWords = searchQuery
-    ? words.filter((word) => normalizeSearchText(word.meaning).includes(searchQuery))
+    ? words.filter((word) => matchesOverviewSearch(word, searchQuery, japaneseQuery))
     : words;
   const learnedWords = matchingWords.filter((word) => isLearned(word));
   const dueWords = matchingWords.filter((word) => !isLearned(word));
@@ -489,7 +493,7 @@ function renderOverviewLists() {
   const totalDue = words.length - totalLearned;
 
   els.overviewSummary.textContent = searchQuery
-    ? `All decks: ${matchingWords.length} English match${matchingWords.length === 1 ? "" : "es"} found.`
+    ? `All decks: ${matchingWords.length} match${matchingWords.length === 1 ? "" : "es"} found.`
     : `${activeDeck.label}: ${totalLearned}/${words.length} learned.`;
   els.learnedListCount.textContent = searchQuery ? `${learnedWords.length}/${totalLearned}` : totalLearned;
   els.dueListCount.textContent = searchQuery ? `${dueWords.length}/${totalDue}` : totalDue;
@@ -563,7 +567,14 @@ function dismissOnboarding() {
 }
 
 function renderOnboarding() {
-  const dismissed = localStorage.getItem(onboardingStorageKey) === "true";
+  let dismissed = false;
+  try {
+    dismissed = localStorage.getItem(onboardingStorageKey) === "true";
+  } catch {
+    dismissed = false;
+  }
+  const events = getStatsProgress().events;
+  dismissed = dismissed || (Array.isArray(events) && events.length > 0);
   els.onboardingPanel.classList.toggle("hidden", dismissed || Boolean(state.studyMode));
 }
 
@@ -765,6 +776,22 @@ function recordReviewEvent({ word, isCorrect, learnedAfter, manual }) {
   state.progress[statsKey] = stats;
 }
 
+function markLastReviewEventCorrect(word, learnedAfter) {
+  const events = getStatsProgress().events;
+  if (!Array.isArray(events)) {
+    return;
+  }
+  for (let index = events.length - 1; index >= 0; index -= 1) {
+    if (events[index].itemId === word.id) {
+      events[index].correct = true;
+      events[index].accepted = true;
+      events[index].learnedAfter = events[index].learnedAfter || learnedAfter;
+      state.statsVersion += 1;
+      return;
+    }
+  }
+}
+
 function getStatsProgress() {
   const stats = state.progress[statsKey];
   if (stats && typeof stats === "object" && !Array.isArray(stats)) {
@@ -787,22 +814,26 @@ function getReviewStreak(events) {
 }
 
 function getHardestItems(events, limit = 3) {
-  const byItem = new Map();
-  events.forEach((event) => {
-    if (!event.itemId) {
-      return;
-    }
-    const item = byItem.get(event.itemId) || { attempts: 0, wrong: 0 };
-    item.attempts += 1;
-    if (!event.correct) {
-      item.wrong += 1;
-    }
-    byItem.set(event.itemId, item);
-  });
+  const byItem = events === getStatsProgress().events ? getMistakeStatsIndex() : null;
+  const counts = byItem || new Map();
+  if (!byItem) {
+    events.forEach((event) => {
+      if (!event.itemId) {
+        return;
+      }
+      const item = counts.get(event.itemId) || { attempts: 0, wrong: 0 };
+      item.attempts += 1;
+      if (!event.correct) {
+        item.wrong += 1;
+      }
+      counts.set(event.itemId, item);
+    });
+  }
 
-  return Array.from(byItem.entries())
+  return Array.from(counts.entries())
+    .filter(([, item]) => item.wrong > 0)
     .map(([itemId, item]) => ({ ...item, itemId, word: findAnyWordById(itemId) }))
-    .filter((item) => item.word && item.wrong > 0)
+    .filter((item) => item.word)
     .sort((a, b) => {
       const rateDiff = b.wrong / b.attempts - a.wrong / a.attempts;
       if (rateDiff !== 0) {
@@ -821,7 +852,8 @@ function getLocalDateKey(date) {
 }
 
 function getModeLabelForWord(word) {
-  const mode = Object.values(studyModes).find((item) => state.allDecks[item.id].get(word.deckId)?.some((entry) => entry.id === word.id));
+  const entry = state.itemIndex.get(word.id);
+  const mode = entry ? studyModes[entry.modeId] : null;
   return mode ? mode.label : word.deckId.toUpperCase();
 }
 
@@ -861,7 +893,7 @@ async function loadDecks() {
     Object.values(studyModes).map(async (mode) => {
       const loaded = await Promise.all(
         mode.decks.map(async (deck) => {
-          const response = await fetch(deck.file, { cache: "no-store" });
+          const response = await fetch(deck.file, { cache: "no-cache" });
           if (!response.ok) {
             throw new Error(`${mode.label} ${deck.label} returned ${response.status}`);
           }
@@ -892,6 +924,21 @@ async function loadDecks() {
     })
   );
   buildKanjiVocabularyIndex();
+  buildItemIndex();
+}
+
+function buildItemIndex() {
+  const index = new Map();
+  Object.values(studyModes).forEach((mode) => {
+    mode.decks.forEach((deck) => {
+      (state.allDecks[mode.id].get(deck.id) || []).forEach((item) => {
+        if (!index.has(item.id)) {
+          index.set(item.id, { item, modeId: mode.id });
+        }
+      });
+    });
+  });
+  state.itemIndex = index;
 }
 
 function buildKanjiVocabularyIndex() {
@@ -1011,6 +1058,7 @@ function startQuiz() {
   els.overviewPanel.classList.add("hidden");
   els.completePanel.classList.add("hidden");
   els.quizPanel.classList.remove("hidden");
+  document.body.dataset.view = "quiz";
   updateStats();
   showNextWord();
 }
@@ -1049,6 +1097,7 @@ function startRememberQuiz() {
   els.overviewPanel.classList.add("hidden");
   els.completePanel.classList.add("hidden");
   els.quizPanel.classList.remove("hidden");
+  document.body.dataset.view = "quiz";
   updateStats();
   showNextWord();
 }
@@ -1178,21 +1227,30 @@ function uniqueWords(words) {
   });
 }
 
-function getMistakeStatsForWord(word) {
+function getMistakeStatsIndex() {
   const events = Array.isArray(getStatsProgress().events) ? getStatsProgress().events : [];
-  return events.reduce(
-    (stats, event) => {
-      if (event.itemId !== word.id) {
-        return stats;
-      }
-      stats.attempts += 1;
-      if (!event.correct) {
-        stats.wrong += 1;
-      }
-      return stats;
-    },
-    { attempts: 0, wrong: 0 }
-  );
+  const cache = state.mistakeStatsCache;
+  if (cache && cache.events === events && cache.length === events.length && cache.version === state.statsVersion) {
+    return cache.index;
+  }
+  const index = new Map();
+  events.forEach((event) => {
+    if (!event.itemId) {
+      return;
+    }
+    const stats = index.get(event.itemId) || { attempts: 0, wrong: 0 };
+    stats.attempts += 1;
+    if (!event.correct) {
+      stats.wrong += 1;
+    }
+    index.set(event.itemId, stats);
+  });
+  state.mistakeStatsCache = { events, length: events.length, version: state.statsVersion, index };
+  return index;
+}
+
+function getMistakeStatsForWord(word) {
+  return getMistakeStatsIndex().get(word.id) || { attempts: 0, wrong: 0 };
 }
 
 function sortWeakItems(words) {
@@ -1268,12 +1326,12 @@ function submitAnswer(rawAnswer) {
     wordProgress.rememberAttempts = (wordProgress.rememberAttempts || 0) + 1;
     wordProgress.lastRememberReviewedAt = new Date().toISOString();
   } else if (isCorrect) {
-    wordProgress.correctCount = Math.min(2, wordProgress.correctCount + 1);
+    wordProgress.correctCount = Math.min(2, (wordProgress.correctCount || 0) + 1);
   }
   const learnedAfter = state.reviewMode !== "remember" && correctBefore < 2 && wordProgress.correctCount >= 2;
   updateFailureCooldown(state.currentWord, isCorrect);
   if (state.reviewMode !== "remember") {
-    wordProgress.attempts += 1;
+    wordProgress.attempts = (wordProgress.attempts || 0) + 1;
     wordProgress.lastAnsweredAt = new Date().toISOString();
   }
   recordReviewEvent({
@@ -1291,7 +1349,7 @@ function submitAnswer(rawAnswer) {
     saveProgress();
   }
 
-  els.resultLabel.textContent = isCorrect ? "Correct" : "Incorrect";
+  els.resultLabel.textContent = isCorrect ? "Correct" : answer ? `Incorrect · you wrote “${answer}”` : "Not answered";
   els.answerReveal.textContent = getAnswerRevealText(state.currentWord);
   els.exampleReveal.innerHTML = renderExample(state.currentWord);
   if (state.reviewMode === "remember") {
@@ -1310,10 +1368,7 @@ function submitAnswer(rawAnswer) {
   els.dontKnow.disabled = true;
   els.knowWord.disabled = true;
   updateStats();
-  renderDeckChoices();
-  renderRememberList();
-  renderOverviewLists();
-  renderProgressStats();
+  refreshVisibleViews();
   updateRememberAction();
   updateAcceptAnswerAction(isCorrect);
   updateAudioControls(true);
@@ -1328,7 +1383,7 @@ function markCurrentWordLearned() {
   const wordProgress = getWordProgress(state.currentWord);
   const correctBefore = wordProgress.correctCount || 0;
   wordProgress.correctCount = 2;
-  wordProgress.attempts += 1;
+  wordProgress.attempts = (wordProgress.attempts || 0) + 1;
   wordProgress.manuallyLearned = true;
   wordProgress.lastAnsweredAt = new Date().toISOString();
   updateFailureCooldown(state.currentWord, true);
@@ -1353,13 +1408,26 @@ function markCurrentWordLearned() {
   els.dontKnow.disabled = true;
   els.knowWord.disabled = true;
   updateStats();
-  renderDeckChoices();
-  renderRememberList();
-  renderOverviewLists();
-  renderProgressStats();
+  refreshVisibleViews();
   updateRememberAction();
   updateAudioControls(true);
   els.nextWord.focus();
+}
+
+function refreshVisibleViews() {
+  const isVisible = (panel) => !panel.classList.contains("hidden");
+  if (isVisible(els.setupPanel)) {
+    renderDeckChoices();
+  }
+  if (isVisible(els.rememberPanel)) {
+    renderRememberList();
+  }
+  if (isVisible(els.overviewPanel)) {
+    renderOverviewLists();
+  }
+  if (isVisible(els.modePanel) || isVisible(els.statsPanel)) {
+    renderProgressStats();
+  }
 }
 
 function updateRememberAction() {
@@ -1407,9 +1475,10 @@ function acceptLastAnswer() {
   wordProgress.lastAcceptedAnswerAt = new Date().toISOString();
   state.progress[state.currentWord.id] = wordProgress;
   updateFailureCooldown(state.currentWord, true);
+  markLastReviewEventCorrect(state.currentWord, correctBefore < 2 && wordProgress.correctCount >= 2);
   saveProgress();
 
-  els.resultLabel.textContent = "Accepted";
+  els.resultLabel.textContent = `Accepted · “${state.lastSubmittedAnswer}”`;
   els.feedback.className = "feedback correct";
   els.acceptAnswer.classList.add("hidden");
   els.acceptAnswer.disabled = true;
@@ -1419,11 +1488,9 @@ function acceptLastAnswer() {
       ? `Learned. This ${itemLabel} will no longer appear. Your answer was saved for this item.`
       : `${wordProgress.correctCount}/2 correct answers for this ${itemLabel}. Your answer was saved for this item.`;
   updateStats();
-  renderDeckChoices();
-  renderRememberList();
-  renderOverviewLists();
-  renderProgressStats();
+  refreshVisibleViews();
   updateRememberAction();
+  els.nextWord.focus();
 }
 
 function toggleRememberWord(word, forceValue = null) {
@@ -1438,10 +1505,8 @@ function toggleRememberWord(word, forceValue = null) {
   state.progress[word.id] = wordProgress;
   saveProgress();
 
-  renderDeckChoices();
-  renderRememberList();
-  renderOverviewLists();
   updateStats();
+  refreshVisibleViews();
 
   if (state.currentWord && state.currentWord.id === word.id) {
     updateRememberAction();
@@ -2220,6 +2285,10 @@ function getAllWords() {
 }
 
 function findWordById(wordId) {
+  const entry = state.itemIndex.get(wordId);
+  if (entry && getModeConfig() && entry.modeId === state.studyMode) {
+    return entry.item;
+  }
   return getAllWords().find((word) => word.id === wordId);
 }
 
@@ -2228,7 +2297,8 @@ function getAllStudyItems() {
 }
 
 function findAnyWordById(wordId) {
-  return getAllStudyItems().find((word) => word.id === wordId);
+  const entry = state.itemIndex.get(wordId);
+  return entry ? entry.item : getAllStudyItems().find((word) => word.id === wordId);
 }
 
 function pickRandomWord(words, previousWord) {
@@ -2324,7 +2394,21 @@ function isToRemember(word) {
 }
 
 function normalizeSearchText(value) {
+  if (containsKana(value) || containsKanji(value)) {
+    return normalizeJapaneseScriptAnswer(value);
+  }
   return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function getJapaneseSearchQuery(value) {
+  return containsKana(value) || containsKanji(value) ? normalizeJapaneseScriptAnswer(value) : "";
+}
+
+function matchesOverviewSearch(word, searchQuery, japaneseQuery) {
+  if (japaneseQuery) {
+    return [word.word, word.reading].some((value) => normalizeJapaneseScriptAnswer(value || "").includes(japaneseQuery));
+  }
+  return normalizeSearchText(word.meaning).includes(searchQuery);
 }
 
 function getWordStatusText(word, progress = getWordProgress(word)) {
@@ -2371,6 +2455,7 @@ function getSessionProgressText() {
 
 function showModeMenu() {
   stopSpeech();
+  document.body.dataset.view = "home";
   state.studyMode = null;
   state.reviewMode = "normal";
   state.currentWord = null;
@@ -2396,6 +2481,7 @@ function showSetup() {
     return;
   }
   applyModeText();
+  document.body.dataset.view = "setup";
   state.reviewMode = "normal";
   els.modePanel.classList.add("hidden");
   els.settingsPanel.classList.add("hidden");
@@ -2417,6 +2503,7 @@ function showSetup() {
 
 function showComplete() {
   stopSpeech();
+  document.body.dataset.view = "complete";
   const mode = getModeConfig();
   els.quizPanel.classList.add("hidden");
   els.modePanel.classList.add("hidden");
@@ -2527,7 +2614,7 @@ async function loadProgress() {
 
 async function loadExamples() {
   try {
-    const response = await fetch("data/examples.json", { cache: "no-store" });
+    const response = await fetch("data/examples.json", { cache: "no-cache" });
     if (!response.ok) {
       throw new Error(`Examples returned ${response.status}`);
     }
